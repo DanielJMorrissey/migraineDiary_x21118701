@@ -35,8 +35,7 @@ class AuthorisationController extends Controller
         # diary is dashboard
         $verifications = $request->only('username', 'password');
         if (Auth::attempt($verifications)) {
-            return redirect()->intended('diary')
-                        ->with('success', $successful);
+            return redirect('diary')->with('success', $successful);
         }
 
         return redirect('loginpage')->with('failed', $failedLogin);
@@ -56,7 +55,6 @@ class AuthorisationController extends Controller
         ]);
 
         $info = $request->all();
-        # $verify = $this->createUser($info);
 
         User::create([
             'username' => $info['username'],
@@ -68,20 +66,13 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('successReg', $successRegistration);
     }
 
-    public function createUser(array $info)
-    {
-        return User::create([
-            'username' => $info['username'],
-            'password' => Hash::make($info['password'])
-        ]);
-    }
-
     public function diary(){
         if(Auth::check()){
             return view('diary');
         }
 
         $noAccess = 'You are not signed in, either sign in or register!';
+        
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
