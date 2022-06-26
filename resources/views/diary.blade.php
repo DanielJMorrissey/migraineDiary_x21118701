@@ -37,7 +37,21 @@
             </div>
         </nav>
         <main>
-            Success.
+            <p>
+                Welcome {{ auth()->user()->username }}!
+            </p>
+            <p>
+                Welcome user with id {{ auth()->user()->id }}!
+            </p>
+            @if (session('success'))
+                <small>
+                    {{ session('success') }}
+                </small>
+            @endif
+            <p style="margin:1em;">
+               Success. 
+            </p>
+            
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -67,6 +67,24 @@
                     </div>
                 </div>
             </div>
+            @if(session('failed'))
+                <small>
+                    {{ session('failed') }}
+                </small>
+                
+            @elseif(session('successReg'))
+                <small>
+                    {{ session('successReg') }}
+                </small>
+            @elseif(session('noAccess'))
+                <small>
+                    {{ session('noAccess') }}
+                </small>
+            @elseif(session('loggedOut'))
+                <small>
+                    {{ session('loggedOut') }}
+                </small>    
+            @endif
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

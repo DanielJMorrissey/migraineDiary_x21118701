@@ -2,8 +2,6 @@
 
 /*
     need to customise look
-    fix feedback to user
-    fix register redirect
     check for other bugs
 */
 
@@ -31,14 +29,17 @@ class AuthorisationController extends Controller
             'password' => 'required',
         ]);
 
+        $successful = 'Welcome User!';
+        $failedLogin = 'Error! Entered details are not valid, please try again or register an account!';
+
         # diary is dashboard
         $verifications = $request->only('username', 'password');
         if (Auth::attempt($verifications)) {
             return redirect()->intended('diary')
-                        ->withSuccess('Welcome User!');
+                        ->with('success', $successful);
         }
 
-        return redirect('loginpage')->withSuccess('Error! Entered details are not valid, please try again or register an account!');
+        return redirect('loginpage')->with('failed', $failedLogin);
     }
 
     # registration
@@ -55,9 +56,16 @@ class AuthorisationController extends Controller
         ]);
 
         $info = $request->all();
-        $verify = $this->createUser($info);
+        # $verify = $this->createUser($info);
 
-        return redirect('diary')->withSuccess('You have created an account!');
+        User::create([
+            'username' => $info['username'],
+            'password' => Hash::make($info['password'])
+        ]);
+
+        $successRegistration = 'You have created an account! Please log in!';
+
+        return redirect('loginpage')->with('successReg', $successRegistration);
     }
 
     public function createUser(array $info)
@@ -73,13 +81,16 @@ class AuthorisationController extends Controller
             return view('diary');
         }
 
-        return redirect('loginpage')->withSuccess('You are not signed in, either sign in or register!');
+        $noAccess = 'You are not signed in, either sign in or register!';
+        return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
     public function logOut(){
         Session::flush();
         Auth::logout();
 
-        return redirect('loginpage');
+        $loggedOut = 'You have logged out, want to log back in?';
+
+        return redirect('loginpage')->with('loggedOut', $loggedOut);
     }
 }
