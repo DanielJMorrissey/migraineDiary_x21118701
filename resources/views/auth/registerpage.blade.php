@@ -23,6 +23,13 @@
                                     <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
+                                <div class="form-group mb-3">
+                                    <input type="password" placeholder="Retype Password" id="password1" class="form-control"
+                                        name="password1" required>
+                                    @if (session('notMatching'))
+                                    <span class="text-danger">{{ session('notMatching') }}</span>
+                                    @endif
+                                </div>
                                 <div class="d-grid mx-auto">
                                     <button type="submit" class="btn btn-dark btn-block">Sign up</button>
                                 </div>

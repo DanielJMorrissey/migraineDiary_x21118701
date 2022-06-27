@@ -52,18 +52,26 @@ class AuthorisationController extends Controller
         $request->validate([
             'username' => 'required|unique:users',
             'password' => 'required|min:6',
+            'password1' => 'required|min:6',
         ]);
+
 
         $info = $request->all();
 
-        User::create([
-            'username' => $info['username'],
-            'password' => Hash::make($info['password'])
-        ]);
+        if($info['password'] == $info['password1']){
+            User::create([
+                'username' => $info['username'],
+                'password' => Hash::make($info['password'])
+            ]);
 
-        $successRegistration = 'You have created an account! Please log in!';
+            $successRegistration = 'You have created an account! Please log in!';
 
-        return redirect('loginpage')->with('successReg', $successRegistration);
+            return redirect('loginpage')->with('successReg', $successRegistration);
+        } else {
+            $notMatching = 'Passwords do not match';
+            return redirect('register')->with('notMatching', $notMatching);
+        }
+        
     }
 
     public function diary(){
