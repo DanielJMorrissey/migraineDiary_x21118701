@@ -11,6 +11,10 @@
             <small>
                 {{ session('success') }}
             </small>
+        @elseif (session('successReg'))
+            <small>
+                {{ session('successReg') }}
+            </small>
         @endif
         <p style="margin:1em;">
             Success. 

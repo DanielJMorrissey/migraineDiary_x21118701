@@ -64,9 +64,13 @@ class AuthorisationController extends Controller
                 'password' => Hash::make($info['password'])
             ]);
 
-            $successRegistration = 'You have created an account! Please log in!';
+            $successRegistration = 'You have created an account!';
 
-            return redirect('loginpage')->with('successReg', $successRegistration);
+            $verifications = $request->only('username', 'password');
+            if (Auth::attempt($verifications)) {
+                return redirect('diary')->with('successReg', $successRegistration);
+            }
+            
         } else {
             $notMatching = 'Passwords do not match';
             return redirect('register')->with('notMatching', $notMatching);
