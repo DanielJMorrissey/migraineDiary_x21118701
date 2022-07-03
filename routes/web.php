@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorisationController;
+use App\Http\Controllers\EntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,7 @@ Route::get('register', [AuthorisationController::class, 'registerPage'])->name('
 Route::post('computeRegister', [AuthorisationController::class, 'computeRegistration'])->name('register.compute');
 
 Route::get('signout', [AuthorisationController::class, 'logOut'])->name('logout');
+
+Route::get('/addDiary', [AuthorisationController::class, 'addDiary'])->name('addDiary');
+
+Route::post('/addDiary/entry', [EntryController::class, 'addDiaryEntry'])->name('addDiaryEntry');

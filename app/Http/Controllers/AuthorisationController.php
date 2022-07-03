@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Diary;
 use Illuminate\Support\Facades\Auth;
 
 class AuthorisationController extends Controller
@@ -32,7 +33,7 @@ class AuthorisationController extends Controller
         $successful = 'Welcome User!';
         $failedLogin = 'Error! Entered details are not valid, please try again or register an account!';
 
-        # diary is dashboard
+        # diary
         $verifications = $request->only('username', 'password');
         if (Auth::attempt($verifications)) {
             return redirect('diary')->with('success', $successful);
@@ -78,9 +79,28 @@ class AuthorisationController extends Controller
         
     }
 
-    public function diary(){
+    public function diary(User $user){
         if(Auth::check()){
-            return view('diary');
+
+            //ddd('wont show data', $user->diaries);
+            //$data = $user->diaries->all();
+            $data = Diary::where('user_id', Auth::user()->id)->get();
+            //$data->where('user_id', Auth::user()->id);
+            //ddd('wont show data', $data);
+            return view('diary', [
+                'diaries' => $data,
+            ]);
+        }
+
+        $noAccess = 'You are not signed in, either sign in or register!';
+        
+        return redirect('loginpage')->with('noAccess', $noAccess);
+    }
+
+    public function addDiary()
+    {
+        if(Auth::check()){
+            return view('addDiary');
         }
 
         $noAccess = 'You are not signed in, either sign in or register!';
