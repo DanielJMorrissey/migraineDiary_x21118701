@@ -19,7 +19,12 @@ class AuthorisationController extends Controller
     # index
     public function loginPage()
     {
-        return view('auth.loginpage');
+        if (!Auth::check()){
+            return view('auth.loginpage'); 
+        } else{
+            return redirect('diary');
+        }
+        
     }
 
     # customLogin
@@ -45,7 +50,11 @@ class AuthorisationController extends Controller
     # registration
     public function registerPage()
     {
-        return view('auth.registerpage');
+        if (!Auth::check()){
+            return view('auth.registerpage');
+        } else {
+            return redirect('diary');
+        }
     }
 
     public function computeRegistration(Request $request)
@@ -79,14 +88,11 @@ class AuthorisationController extends Controller
         
     }
 
-    public function diary(User $user){
+    public function diary(){
         if(Auth::check()){
 
-            //ddd('wont show data', $user->diaries);
-            //$data = $user->diaries->all();
-            $data = Diary::where('user_id', Auth::user()->id)->get();
-            //$data->where('user_id', Auth::user()->id);
-            //ddd('wont show data', $data);
+            
+            $data = Diary::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->get();
             return view('diary', [
                 'diaries' => $data,
             ]);

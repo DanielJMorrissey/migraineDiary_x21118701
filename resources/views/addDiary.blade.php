@@ -1,13 +1,23 @@
 @extends('layout')
+@section('title')
+    <title>
+        Migraine Diary - Add Diary Entry
+    </title>
+@endsection
 @section('maincontent')
     <main>
         <div class="container">
+            @if(session('dateRequired'))
+                <p>
+                    {{ session('dateRequired') }}
+                </p>
+            @endif
             <form method="POST" action="{{ route('addDiaryEntry') }}">
             @csrf
             <div class="form-group row">
                 <label for="text" class="col-4 col-form-label">Date</label> 
                 <div class="col-8">
-                    <input id="date" name="date" type="date" class="form-control" required="required">
+                    <input id="date" name="date" type="date" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">

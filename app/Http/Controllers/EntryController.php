@@ -12,12 +12,7 @@ class EntryController extends Controller
 {
 
     /*
-        need to fix date format
-        use isset on a lot of fill ins as can be null
         check for bugs
-        check stackoverflow x21118701
-        change order
-        research sql injection prevention
         sort out update and delete
     */
 
@@ -30,27 +25,83 @@ class EntryController extends Controller
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails())
         {
-            return redirect()->back();
+            return redirect()->back()->with('dateRequired', 'The date is required!');
         }
 
         $data = $request->all();
         $diaryEntry = new Diary();
         $diaryEntry->user_id = Auth::user()->id;
         $diaryEntry->date = $data['date'];
-        $diaryEntry->stress = $data['stress'];
-        $diaryEntry->low_water_intake = $data['dehydrated'];
-        $diaryEntry->chocolate = $data['chocolate'];
-        $diaryEntry->cheese = $data['cheese'];
-        $diaryEntry->yeast_goods = $data['yeast'];
-        $diaryEntry->yoghurt = $data['yoghurt'];
-        $diaryEntry->fruit = $data['fruit'];
-        $diaryEntry->nuts = $data['nuts'];
-        $diaryEntry->olives = $data['olives'];
-        $diaryEntry->tomato = $data['tomato'];
-        $diaryEntry->soy = $data['soy'];
-        $diaryEntry->vinegar = $data['vinegar'];
-        $diaryEntry->medication = $data['takenMeds'];
-        $diaryEntry->comment = $data['comment'];
+        if(isset($data['stress'])){
+            $diaryEntry->stress = $data['stress'];
+        } else {
+            $diaryEntry->stress = 0;
+        }
+        if(isset($data['dehydrated'])){
+            $diaryEntry->low_water_intake = $data['dehydrated'];
+        } else{
+            $diaryEntry->low_water_intake = 0;
+        }
+        if(isset($data['choclate'])){
+            $diaryEntry->chocolate = $data['chocolate'];
+        } else{
+            $diaryEntry->chocolate = 0;
+        }
+        if(isset($data['cheese'])){
+            $diaryEntry->cheese = $data['cheese'];
+        } else{
+            $diaryEntry->cheese = 0;
+        }
+        if(isset($data['yeast'])){
+            $diaryEntry->yeast_goods = $data['yeast'];
+        } else{
+            $diaryEntry->yeast_goods = 0;
+        }
+        if(isset($data['yoghurt'])){
+            $diaryEntry->yoghurt = $data['yoghurt'];
+        } else{
+            $diaryEntry->yoghurt = 0;
+        }
+        if(isset($data['fruit'])){
+            $diaryEntry->fruit = $data['fruit'];
+        } else{
+            $diaryEntry->fruit = 0;
+        }
+        if(isset($data['nuts'])){
+            $diaryEntry->nuts = $data['nuts'];
+        } else{
+            $diaryEntry->nuts = 0;
+        }
+        if(isset($data['olives'])){
+            $diaryEntry->olives = $data['olives'];
+        } else{
+            $diaryEntry->olives = 0;
+        }
+        if(isset($data['tomato'])){
+            $diaryEntry->tomato = $data['tomato'];
+        } else{
+            $diaryEntry->tomato = 0;
+        }
+        if(isset($data['soy'])){
+            $diaryEntry->soy = $data['soy'];
+        } else{
+            $diaryEntry->soy = 0;
+        }
+        if(isset($data['vinegar'])){
+            $diaryEntry->vinegar = $data['vinegar'];
+        } else{
+            $diaryEntry->vinegar = 0;
+        }
+        if(isset($data['takenMeds'])){
+            $diaryEntry->medication = $data['takenMeds'];
+        } else{
+            $diaryEntry->medication = null;
+        }
+        if(isset($data['comment'])){
+            $diaryEntry->comment = $data['comment'];
+        } else{
+            $diaryEntry->comment = null;
+        }
 
         if (!$diaryEntry->save())
         {

@@ -1,4 +1,9 @@
 @extends('layout')
+@section('title')
+    <title>
+        Migraine Diary - Register
+    </title>
+@endsection
 @section('maincontent')
     <main class="signup-form">
         <div class="cotainer">
