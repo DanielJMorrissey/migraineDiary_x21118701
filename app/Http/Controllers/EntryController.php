@@ -13,7 +13,7 @@ class EntryController extends Controller
 
     /*
         check for bugs
-        sort out update and delete
+        finesse server-side validation
     */
 
     public function addDiaryEntry(Request $request)
@@ -206,6 +206,13 @@ class EntryController extends Controller
 
         $diary->update();
         return redirect('diary');
+    }
+
+    public function delete($id)
+    {
+        $diary = Diary::find($id);
+        $diary->delete();
+        return redirect()->back();
     }
 
     

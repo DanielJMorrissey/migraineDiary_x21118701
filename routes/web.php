@@ -38,3 +38,5 @@ Route::post('/addDiary/entry', [EntryController::class, 'addDiaryEntry'])->name(
 Route::get('/updateDiary/{id}', [AuthorisationController::class, 'edit'])->name('updateDiaryEntry');
 
 Route::put('/completeUpdateDiary/{id}', [EntryController::class, 'update'])->name('updateComplete');
+
+Route::get('/deleteDiaryEntry/{id}', [EntryController::class, 'delete'])->name('deleteDiaryEntry');
