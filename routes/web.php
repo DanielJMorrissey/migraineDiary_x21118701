@@ -34,3 +34,7 @@ Route::get('signout', [AuthorisationController::class, 'logOut'])->name('logout'
 Route::get('/addDiary', [AuthorisationController::class, 'addDiary'])->name('addDiary');
 
 Route::post('/addDiary/entry', [EntryController::class, 'addDiaryEntry'])->name('addDiaryEntry');
+
+Route::get('/updateDiary/{id}', [AuthorisationController::class, 'edit'])->name('updateDiaryEntry');
+
+Route::put('/completeUpdateDiary/{id}', [EntryController::class, 'update'])->name('updateComplete');

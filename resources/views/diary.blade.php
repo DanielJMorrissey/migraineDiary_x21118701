@@ -22,16 +22,20 @@
                     <p class="col-2">
                         {{ date('d-m-Y', strtotime($diary->date)) }}
                     </p>
-                    <button class="col-2">
-                        <a href="#">
-                            Update
+                    
+                        <a href="updateDiary/{{ $diary->id }}" class="col-2">
+                            <button >
+                                Update
+                            </button>
                         </a>
-                    </button>
-                    <button class="col-2">
-                        <a href="#">
-                            Delete
+                    
+                    
+                        <a href="#" class="col-2">
+                            <button> 
+                                Delete
+                            </button>  
                         </a>
-                    </button>  
+                     
                 </div>
                 
                 <hr />

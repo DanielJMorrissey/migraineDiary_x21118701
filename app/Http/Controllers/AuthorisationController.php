@@ -103,6 +103,18 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    public function edit($id)
+    {
+        if(Auth::check()){
+            $diary = Diary::find($id);
+            return view('update', compact('diary'));
+        }
+
+        $noAccess = 'You are not signed in, either sign in or register!';
+        
+        return redirect('loginpage')->with('noAccess', $noAccess);
+    }
+
     public function addDiary()
     {
         if(Auth::check()){
