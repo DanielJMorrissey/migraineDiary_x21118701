@@ -8,9 +8,11 @@
     <main>
         <div class="form-group row d-flex justify-content-center" >
             <div class="offset-4 col-8" style="width:80%;margin:0em auto;text-align:center;" >
-                <button class="btn btn-primary">
-                    <a href="/addDiary" style="color:#000;">Add Diary Entry</a> 
-                </button>
+                <a href="/addDiary" style="color:#000;">
+                    <button class="btn btn-primary">
+                        Add Diary Entry 
+                    </button>
+                </a>
             </div>
         </div>
         @foreach ($diaries as $diary)

@@ -258,5 +258,50 @@ class EntryController extends Controller
         return redirect('gpTracker');
     }
 
+    public function updateGPVisit(Request $request, $id){
+        $rules = [
+            'date' => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails())
+        {
+            return redirect()->back()->with('dateRequired', 'The date is required!');
+        }
+
+        $gpVisitEntry = GPTracker::find($id);
+        $data = $request->all();
+        $gpVisitEntry->date = $data['date'];
+        if(isset($data['gp'])){
+            $gpVisitEntry->gp = $data['gp'];
+        } else{
+            $gpVisitEntry->gp = 'Not given';
+        }
+        if(isset($data['medication'])){
+            $gpVisitEntry->medication = $data['medication'];
+        } else{
+            $gpVisitEntry->medication = null;
+        }
+        if(isset($data['advice'])){
+            $gpVisitEntry->advice = $data['advice'];
+        } else{
+            $gpVisitEntry->advice = null;
+        }
+
+        if (!$gpVisitEntry->update())
+        {
+            return redirect()->back();
+        }
+
+        $gpVisitEntry->update();
+        return redirect('gpTracker');
+    }
+
+    public function deleteGPVisit($id){
+        $deleteGPVisit = GPTracker::find($id);
+        $deleteGPVisit->delete();
+        return redirect()->back();
+    }
+
     
 }

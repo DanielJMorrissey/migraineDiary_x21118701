@@ -156,4 +156,15 @@ class AuthorisationController extends Controller
         
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
+
+    public function editGPVisit($id){
+        if(Auth::check()){
+            $updateGPVisit = GPTracker::find($id);
+            return view('updateGPVisit', compact('updateGPVisit'));
+        }
+
+        $noAccess = 'You are not signed in, either sign in or register!';
+        
+        return redirect('loginpage')->with('noAccess', $noAccess);
+    }
 }

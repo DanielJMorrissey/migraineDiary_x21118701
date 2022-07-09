@@ -8,9 +8,11 @@
     <main>
         <div class="form-group row d-flex justify-content-center" >
             <div class="offset-4 col-8" style="width:80%;margin:0em auto;text-align:center;" >
-                <button class="btn btn-primary">
-                    <a href="/addGPVisit" style="color:#000;">Add GP Visit</a> 
-                </button>
+                <a href="/addGPVisit" style="color:#000;">
+                    <button class="btn btn-primary">
+                        Add GP Visit 
+                    </button>
+                </a>
             </div>
         </div>
         @foreach ($gpVisits as $gpVisit)
@@ -23,14 +25,14 @@
                         {{ date('d-m-Y', strtotime($gpVisit->date)) }}
                     </p>
                     
-                        <a href="#" class="col-2">
+                        <a href="/updateGPVisit/{{ $gpVisit->id }}" class="col-2">
                             <button >
                                 Update
                             </button>
                         </a>
                     
                     
-                        <a href="#" class="col-2">
+                        <a href="/deleteGPVisit/{{ $gpVisit->id }}" class="col-2">
                             <button> 
                                 Delete
                             </button>  

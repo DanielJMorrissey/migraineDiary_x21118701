@@ -46,3 +46,9 @@ Route::get('/gpTracker', [AuthorisationController::class, 'gpTracker'])->name('g
 Route::get('/addGPVisit', [AuthorisationController::class, 'addGPVisit'])->name('addGPVisit');
 
 Route::post('/addGPVisit/entry', [EntryController::class, 'addGPVisitEntry'])->name('addedGPVisit');
+
+Route::get('/updateGPVisit/{id}', [AuthorisationController::class, 'editGPVisit'])->name('updateGPVisit');
+
+Route::put('/completeGPVisitUpdate/{id}', [EntryController::class, 'updateGPVisit'])->name('updateGPVisitComplete');
+
+Route::get('/deleteGPVisit/{id}', [EntryController::class, 'deleteGPVisit'])->name('deleteGPVisit');
