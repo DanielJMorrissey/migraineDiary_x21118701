@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Models\Diary;
+use App\Models\GPTracker;
 use Illuminate\Support\Facades\Auth;
 
 class AuthorisationController extends Controller
@@ -90,8 +91,6 @@ class AuthorisationController extends Controller
 
     public function diary(){
         if(Auth::check()){
-
-            
             $data = Diary::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->get();
             return view('diary', [
                 'diaries' => $data,
@@ -133,5 +132,28 @@ class AuthorisationController extends Controller
         $loggedOut = 'You have logged out, want to log back in?';
 
         return redirect('loginpage')->with('loggedOut', $loggedOut);
+    }
+
+    public function gpTracker(){
+        if(Auth::check()){
+            $gpVisits = GPTracker::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->get();
+            return view('gptracker', [
+                'gpVisits' => $gpVisits,
+            ]);
+        }
+
+        $noAccess = 'You are not signed in, either sign in or register!';
+        
+        return redirect('loginpage')->with('noAccess', $noAccess);
+    }
+
+    public function addGPVisit(){
+        if(Auth::check()){
+            return view('addGPTracker');
+        }
+
+        $noAccess = 'You are not signed in, either sign in or register!';
+        
+        return redirect('loginpage')->with('noAccess', $noAccess);
     }
 }

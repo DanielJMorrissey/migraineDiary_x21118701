@@ -28,6 +28,9 @@
                             <a class="nav-link" href="{{ route('diary') }}">Diary</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gpTracker') }}">GP Tracker</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                         </li>
                         @endguest

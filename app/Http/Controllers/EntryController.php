@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Diary;
 use App\Models\User;
+use App\Models\GPTracker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,6 +15,7 @@ class EntryController extends Controller
     /*
         check for bugs
         finesse server-side validation
+        find a way to prevent wrong deletion
     */
 
     public function addDiaryEntry(Request $request)
@@ -213,6 +215,47 @@ class EntryController extends Controller
         $diary = Diary::find($id);
         $diary->delete();
         return redirect()->back();
+    }
+
+    public function addGPVisitEntry(Request $request){
+        $rules = [
+            'date' => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails())
+        {
+            return redirect()->back()->with('dateRequired', 'The date is required!');
+        }
+
+        $data = $request->all();
+        $gpVisitEntry = new GPTracker();
+        $gpVisitEntry->user_id = Auth::user()->id;
+        $gpVisitEntry->date = $data['date'];
+        if(isset($data['gp'])){
+            $gpVisitEntry->gp = $data['gp'];
+        } else{
+            $gpVisitEntry->gp = 'Not given';
+        }
+        if(isset($data['medication'])){
+            $gpVisitEntry->medication = $data['medication'];
+        } else{
+            $gpVisitEntry->medication = null;
+        }
+        if(isset($data['advice'])){
+            $gpVisitEntry->advice = $data['advice'];
+        } else{
+            $gpVisitEntry->advice = null;
+        }
+
+        if (!$gpVisitEntry->save())
+        {
+            return redirect()->back();
+        }
+
+        $gpVisitEntry->save();
+
+        return redirect('gpTracker');
     }
 
     

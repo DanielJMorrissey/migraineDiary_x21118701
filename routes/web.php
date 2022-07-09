@@ -40,3 +40,9 @@ Route::get('/updateDiary/{id}', [AuthorisationController::class, 'edit'])->name(
 Route::put('/completeUpdateDiary/{id}', [EntryController::class, 'update'])->name('updateComplete');
 
 Route::get('/deleteDiaryEntry/{id}', [EntryController::class, 'delete'])->name('deleteDiaryEntry');
+
+Route::get('/gpTracker', [AuthorisationController::class, 'gpTracker'])->name('gpTracker');
+
+Route::get('/addGPVisit', [AuthorisationController::class, 'addGPVisit'])->name('addGPVisit');
+
+Route::post('/addGPVisit/entry', [EntryController::class, 'addGPVisitEntry'])->name('addedGPVisit');
