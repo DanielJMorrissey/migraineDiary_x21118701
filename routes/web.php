@@ -16,8 +16,8 @@ use App\Http\Controllers\EntryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('home');
 
 Route::get('diary', [AuthorisationController::class, 'diary'])->name('diary');
 

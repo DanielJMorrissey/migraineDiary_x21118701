@@ -16,6 +16,7 @@ class EntryController extends Controller
         check for bugs
         finesse server-side validation
         find a way to prevent wrong deletion
+        create images of gp tracker stuff
     */
 
     public function addDiaryEntry(Request $request)
