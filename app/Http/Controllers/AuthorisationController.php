@@ -186,7 +186,7 @@ class AuthorisationController extends Controller
                 $chocolate = ((Diary::where('user_id', Auth::user()->id)->where('chocolate', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $chocolate = round($chocolate, 2);
             } else {
-                $choclate = 0;
+                $chocolate = 0;
             }
             if(Diary::where('user_id', Auth::user()->id)->where('cheese', 1)->count() != 0){
                 $cheese = ((Diary::where('user_id', Auth::user()->id)->where('cheese', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
@@ -257,5 +257,11 @@ class AuthorisationController extends Controller
                 'vinegar' => $vinegar,
             ]);
         }
+
+        
+
+        $noAccess = 'You are not signed in, either sign in or register!';
+        
+        return redirect('loginpage')->with('noAccess', $noAccess);
     }
 }

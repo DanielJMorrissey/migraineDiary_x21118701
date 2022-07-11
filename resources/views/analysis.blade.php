@@ -13,54 +13,54 @@
                 </tr>
                 <tr>
                     <td scope="row">Stress</td>
-                    <td>{{ $stressPercent }}%</td>
+                    <td id="stressP">{{ $stressPercent }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Dehydration</td>
-                    <td>{{ $hydrated }}%</td>
+                    <td id="dehydratedP">{{ $hydrated }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Chocolate</td>
-                    <td>{{ $chocolate }}%</td>
+                    <td id="chocolateP">{{ $chocolate }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Cheese</td>
-                    <td>{{ $cheese }}%</td>
+                    <td id="cheeseP">{{ $cheese }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Yeast Products</td>
-                    <td>{{ $yeast_goods }}%</td>
+                    <td id="yeastP">{{ $yeast_goods }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Yogurt</td>
-                    <td>{{ $yoghurt }}%</td>
+                    <td id="yoghurtP">{{ $yoghurt }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Fruit</td>
-                    <td>{{ $fruit }}%</td>
+                    <td id="fruitP">{{ $fruit }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Nuts</td>
-                    <td>{{ $nuts }}%</td>
+                    <td id="nutsP">{{ $nuts }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Olives</td>
-                    <td>{{ $olives }}%</td>
+                    <td id="olivesP">{{ $olives }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Tomatoes</td>
-                    <td>{{ $tomato }}%</td>
+                    <td id="tomatoP">{{ $tomato }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Soy</td>
-                    <td>{{ $soy }}%</td>
+                    <td id="soyP">{{ $soy }}%</td>
                 </tr>
                 <tr>
                     <td scope="row">Vinegar</td>
-                    <td>{{ $vinegar }}%</td>
+                    <td id="vinegarP">{{ $vinegar }}%</td>
                 </tr>
-            </table> 
-        </div>
+            </table>
         
     </main>
+    
 @endsection
