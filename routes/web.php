@@ -52,3 +52,5 @@ Route::get('/updateGPVisit/{id}', [AuthorisationController::class, 'editGPVisit'
 Route::put('/completeGPVisitUpdate/{id}', [EntryController::class, 'updateGPVisit'])->name('updateGPVisitComplete');
 
 Route::get('/deleteGPVisit/{id}', [EntryController::class, 'deleteGPVisit'])->name('deleteGPVisit');
+
+Route::get('/analysis', [AuthorisationController::class, 'analysis'])->name('analysisPage');
