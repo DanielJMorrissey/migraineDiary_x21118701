@@ -14,7 +14,6 @@ class EntryController extends Controller
 
     /*
         check for bugs
-        finesse server-side validation
         find a way to prevent wrong deletion
         create images of gp tracker stuff
     */
@@ -235,12 +234,13 @@ class EntryController extends Controller
 
         $deleted = 'Your post was successfully deleted!';
 
-        if(!$diary->delete()){
+        if($diary){
+           $diary->delete();
+        return redirect()->back()->with('deleted', $deleted); 
+        } else{
             return redirect()->back()->with('notDeleted', $notDeleted);
         }
-
-        $diary->delete();
-        return redirect()->back()->with('deleted', $deleted);
+        
     }
 
     public function addGPVisitEntry(Request $request){
@@ -346,11 +346,17 @@ class EntryController extends Controller
 
         $deleted = 'Your post was successfully deleted!';
 
-        if(!$deleteGPVisit->delete()){
+        /*if(!$deleteGPVisit->delete()){
+            
+        }*/
+
+        if($deleteGPVisit){
+            $deleteGPVisit->delete();
+        return redirect()->back()->with('deleted', $deleted);
+        } else{
             return redirect()->back()->with('notDeleted', $notDeleted);
         }
-        $deleteGPVisit->delete();
-        return redirect()->back()->with('deleted', $deleted);
+        
     }
 
     
