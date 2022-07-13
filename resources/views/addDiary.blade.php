@@ -8,8 +8,12 @@
     <main>
         <div class="container">
             @if(session('dateRequired'))
-                <p>
+                <p class="text-danger">
                     {{ session('dateRequired') }}
+                </p>
+            @elseif(session('notSaved'))
+                <p class="text-danger">
+                    {{ session('notSaved') }}
                 </p>
             @endif
             <form method="POST" action="{{ route('addDiaryEntry') }}">

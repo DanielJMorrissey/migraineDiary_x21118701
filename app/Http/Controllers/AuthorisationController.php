@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Diary;
 use App\Models\GPTracker;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
 class AuthorisationController extends Controller
 {
@@ -62,8 +63,8 @@ class AuthorisationController extends Controller
     {
         $request->validate([
             'username' => 'required|unique:users',
-            'password' => 'required|min:6',
-            'password1' => 'required|min:6',
+            'password' => ['required', Password::min(7)->letters()->mixedCase()->numbers()],
+            'password1' => 'required',
         ]);
 
 

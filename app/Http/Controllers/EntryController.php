@@ -22,7 +22,7 @@ class EntryController extends Controller
     public function addDiaryEntry(Request $request)
     {
         $rules = [
-            'date' => 'required',
+            'date' => 'required|date',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -31,10 +31,14 @@ class EntryController extends Controller
             return redirect()->back()->with('dateRequired', 'The date is required!');
         }
 
+        $todaysDate = date('Y-m-d');
         $data = $request->all();
         $diaryEntry = new Diary();
         $diaryEntry->user_id = Auth::user()->id;
         $diaryEntry->date = $data['date'];
+        if($diaryEntry->date > $todaysDate){
+            return redirect()->back()->with('dateRequired', 'Date can only be todays date or the past!');
+        }
         if(isset($data['stress'])){
             $diaryEntry->stress = $data['stress'];
         } else {
@@ -106,20 +110,24 @@ class EntryController extends Controller
             $diaryEntry->comment = null;
         }
 
+        $notSaved = 'Sorry, your entry was not save. Try again later';
+
+        $saved = 'Your entry was saved!';
+
         if (!$diaryEntry->save())
         {
-            return redirect()->back();
+            return redirect()->back()->with('notSaved', $notSaved);
         }
 
         $diaryEntry->save();
 
-        return redirect('diary');
+        return redirect('diary')->with('saved', $saved);
     }
 
     public function update(Request $request, $id)
     {
         $rules = [
-            'date' => 'required',
+            'date' => 'required|date',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -128,9 +136,13 @@ class EntryController extends Controller
             return redirect()->back()->with('dateRequired', 'The date is required!');
         }
 
+        $todaysDate = date('Y-m-d');
         $diary = Diary::find($id);
         $data = $request->all();
         $diary->date = $data['date'];
+        if($diary->date > $todaysDate){
+            return redirect()->back()->with('dateRequired', 'Date can only be todays date or the past!');
+        }
         if(isset($data['stress'])){
             $diary->stress = $data['stress'];
         } else {
@@ -202,25 +214,38 @@ class EntryController extends Controller
             $diary->comment = null;
         }
 
+        $notUpdated = 'Sorry, your entry was not updated';
+
+        $updated = 'Your entry was successfully updated';
+
         if (!$diary->update())
         {
-            return redirect()->back();
+            return redirect()->back()->with('notUpdated', $notUpdated);
         }
 
         $diary->update();
-        return redirect('diary');
+        return redirect('diary')->with('updated', $updated);
     }
 
     public function delete($id)
     {
         $diary = Diary::find($id);
+
+        $notDeleted = 'Sorry, your entry was not deleted. Please try again!';
+
+        $deleted = 'Your post was successfully deleted!';
+
+        if(!$diary->delete()){
+            return redirect()->back()->with('notDeleted', $notDeleted);
+        }
+
         $diary->delete();
-        return redirect()->back();
+        return redirect()->back()->with('deleted', $deleted);
     }
 
     public function addGPVisitEntry(Request $request){
         $rules = [
-            'date' => 'required',
+            'date' => 'required|date',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -229,10 +254,14 @@ class EntryController extends Controller
             return redirect()->back()->with('dateRequired', 'The date is required!');
         }
 
+        $todaysDate = date('Y-m-d');
         $data = $request->all();
         $gpVisitEntry = new GPTracker();
         $gpVisitEntry->user_id = Auth::user()->id;
         $gpVisitEntry->date = $data['date'];
+        if($gpVisitEntry->date > $todaysDate){
+            return redirect()->back()->with('dateRequired', 'Date can only be todays date or the past!');
+        }
         if(isset($data['gp'])){
             $gpVisitEntry->gp = $data['gp'];
         } else{
@@ -249,19 +278,23 @@ class EntryController extends Controller
             $gpVisitEntry->advice = null;
         }
 
+        $notSaved = 'Sorry, your entry was not save. Try again later';
+
+        $saved = 'Your entry was saved!';
+
         if (!$gpVisitEntry->save())
         {
-            return redirect()->back();
+            return redirect()->back()->with('notSaved', $notSaved);
         }
 
         $gpVisitEntry->save();
 
-        return redirect('gpTracker');
+        return redirect('gpTracker')->with('saved', $saved);
     }
 
     public function updateGPVisit(Request $request, $id){
         $rules = [
-            'date' => 'required',
+            'date' => 'required|date',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -270,9 +303,13 @@ class EntryController extends Controller
             return redirect()->back()->with('dateRequired', 'The date is required!');
         }
 
+        $todaysDate = date('Y-m-d');
         $gpVisitEntry = GPTracker::find($id);
         $data = $request->all();
         $gpVisitEntry->date = $data['date'];
+        if($gpVisitEntry->date > $todaysDate){
+            return redirect()->back()->with('dateRequired', 'Date can only be todays date or the past!');
+        }
         if(isset($data['gp'])){
             $gpVisitEntry->gp = $data['gp'];
         } else{
@@ -289,19 +326,31 @@ class EntryController extends Controller
             $gpVisitEntry->advice = null;
         }
 
+        $notUpdated = 'Sorry, your entry was not updated';
+
+        $updated = 'Your entry was successfully updated';
+
         if (!$gpVisitEntry->update())
         {
-            return redirect()->back();
+            return redirect()->back()->with('notUpdated', $notUpdated);
         }
 
         $gpVisitEntry->update();
-        return redirect('gpTracker');
+        return redirect('gpTracker')->with('updated', $updated);
     }
 
     public function deleteGPVisit($id){
         $deleteGPVisit = GPTracker::find($id);
+
+        $notDeleted = 'Sorry, your entry was not deleted. Please try again!';
+
+        $deleted = 'Your post was successfully deleted!';
+
+        if(!$deleteGPVisit->delete()){
+            return redirect()->back()->with('notDeleted', $notDeleted);
+        }
         $deleteGPVisit->delete();
-        return redirect()->back();
+        return redirect()->back()->with('deleted', $deleted);
     }
 
     

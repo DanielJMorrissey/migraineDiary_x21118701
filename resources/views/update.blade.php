@@ -8,8 +8,12 @@
     <main>
         <div class="container">
             @if(session('dateRequired'))
-                <p>
+                <p class="text-danger d-flex justify-content-center">
                     {{ session('dateRequired') }}
+                </p>
+            @elseif(session('notUpdated'))
+                <p class="text-danger d-flex justify-content-center">
+                    {{ session('notUpdated') }}
                 </p>
             @endif
             <form method="POST" action="/completeUpdateDiary/{{ $diary->id }}">

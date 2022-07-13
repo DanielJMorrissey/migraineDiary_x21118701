@@ -7,6 +7,27 @@
 @section('maincontent')
     <main>
         <div class="form-group row d-flex justify-content-center" >
+            @if(session('saved'))
+                <p class="text-success d-flex justify-content-center">
+                    {{ session('saved') }}
+                </p>
+            @elseif(session('updated'))
+                <p class="text-success d-flex justify-content-center">
+                    {{ session('updated') }}
+                </p>
+            @elseif(session('deleted'))
+                <p class="text-success d-flex justify-content-center">
+                    {{ session('deleted') }}
+                </p>
+            @elseif(session('notDeleted'))
+                <p class="text-danger d-flex justify-content-center">
+                    {{ session('notDeleted') }}
+                </p>
+            @elseif(session('notUpdated'))
+                <p class="text-danger d-flex justify-content-center">
+                    {{ session('notUpdated') }}
+                </p>
+            @endif
             <div class="offset-4 col-8" style="width:80%;margin:0em auto;text-align:center;" >
                 <a href="/addGPVisit" style="color:#000;">
                     <button class="btn btn-primary">

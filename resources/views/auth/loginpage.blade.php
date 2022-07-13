@@ -12,6 +12,24 @@
                     <div class="card">
                         <h3 class="card-header text-center">Log In</h3>
                         <div class="card-body">
+                            @if(session('failed'))
+                                <small class="text-danger">
+                                    {{ session('failed') }}
+                                </small>
+                                
+                            @elseif(session('successReg'))
+                                <small class="text-success">
+                                    {{ session('successReg') }}
+                                </small>
+                            @elseif(session('noAccess'))
+                                <small class="text-danger">
+                                    {{ session('noAccess') }}
+                                </small>
+                            @elseif(session('loggedOut'))
+                                <small class="text-success">
+                                    {{ session('loggedOut') }}
+                                </small>    
+                            @endif
                             <form method="POST" action="{{ route('login.custom') }}">
                                 @csrf
                                 <div class="form-group mb-3">
@@ -36,23 +54,6 @@
                 </div>
             </div>
         </div>
-        @if(session('failed'))
-            <small>
-                {{ session('failed') }}
-            </small>
-            
-        @elseif(session('successReg'))
-            <small>
-                {{ session('successReg') }}
-            </small>
-        @elseif(session('noAccess'))
-            <small>
-                {{ session('noAccess') }}
-            </small>
-        @elseif(session('loggedOut'))
-            <small>
-                {{ session('loggedOut') }}
-            </small>    
-        @endif
+        
     </main>
 @endsection

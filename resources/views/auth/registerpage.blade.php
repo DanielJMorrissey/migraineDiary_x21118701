@@ -39,6 +39,15 @@
                                     <button type="submit" class="btn btn-dark btn-block">Sign up</button>
                                 </div>
                             </form>
+                            <p>
+                                Password Rules:
+                                <ul>
+                                    <li>Must be minimum 7 characters</li>
+                                    <li>Must contain at least one lowercase letter</li>
+                                    <li>Must contain at least one uppercase letter</li>
+                                    <li>Must contain at least one number</li>
+                                </ul>
+                            </p>
                         </div>
                     </div>
                 </div>
