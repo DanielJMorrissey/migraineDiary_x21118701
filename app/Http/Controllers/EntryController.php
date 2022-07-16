@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Diary;
-use App\Models\User;
 use App\Models\GPTracker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -345,10 +344,6 @@ class EntryController extends Controller
         $notDeleted = 'Sorry, your entry was not deleted. Please try again!';
 
         $deleted = 'Your post was successfully deleted!';
-
-        /*if(!$deleteGPVisit->delete()){
-            
-        }*/
 
         if($deleteGPVisit){
             $deleteGPVisit->delete();
