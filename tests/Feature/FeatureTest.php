@@ -12,7 +12,7 @@ class FeatureTest extends TestCase
 {
 
     /*
-        test diary and gp visit entries without dusk
+        unit tests
         test analysis results
     */
 
@@ -119,5 +119,191 @@ class FeatureTest extends TestCase
         ]);
 
         $this->get('/')->assertSessionHasNoErrors()->assertStatus(200);
+    }
+
+    public function testDiaryAdditionRedirectsToDiaryPage()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/addDiary');
+        $this->post('addDiary/entry', [
+            'date' => '2022-06-05',
+            'stress' => 1,
+
+        ])->assertSessionHasNoErrors()->assertRedirect('/diary');
+    }
+
+    public function testDiaryDateIsRequired()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/addDiary');
+        $this->post('addDiary/entry', [
+            'date' => '',
+            'stress' => 1,
+
+        ])->assertSessionHasNoErrors()->assertRedirect('/addDiary');
+    }
+
+    public function testDiaryOnlyAcceptsValidDate()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/addDiary');
+        $this->post('addDiary/entry', [
+            'date' => '2022-08-05',
+            'stress' => 1,
+
+        ])->assertSessionHasNoErrors()->assertRedirect('/addDiary');
+    }
+
+    public function testAddGPTrackerEntryPageRedirectsToGPVisitPage()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/gpTracker');
+        $this->get('/addGPVisit');
+
+        $this->post('/addGPVisit/entry',[
+            'date' => '2022-05-22',
+            'gp' => 'Roy Keane'
+        ])->assertSessionHasNoErrors()->assertRedirect('/gpTracker');
+    }
+
+    public function test_GP_OnlyAcceptsValidDate()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/gpTracker');
+        $this->get('/addGPVisit');
+
+        $this->post('/addGPVisit/entry', [
+            'date' => '2022-08-05',
+            'stress' => 1,
+
+        ])->assertSessionHasNoErrors()->assertRedirect('/addGPVisit');
+    }
+
+    public function test_GP_RequiresDate()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/gpTracker');
+        $this->get('/addGPVisit');
+
+        $this->post('/addGPVisit/entry', [
+            'date' => '',
+            'stress' => 1,
+
+        ])->assertSessionHasNoErrors()->assertRedirect('/addGPVisit');
+    }
+
+    public function test_update_redirects_to_diary_page()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/addDiary');
+        $this->post('addDiary/entry', [
+            'date' => '2022-06-05',
+            'stress' => 1,
+
+        ]);
+
+        $this->get('/updateDiary/1');
+        $this->put('/completeUpdateDiary/1', [
+            'date' => '2022-06-05',
+            'chocolate' => 1,
+            'comment' => 'Eric Cantona'
+        ])->assertSessionHasNoErrors()->assertRedirect('/diary');
+    }
+
+    public function test_update_redirects_to_gp_page()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/gpTracker');
+        $this->get('/addGPVisit');
+        $this->post('/addGPVisit/entry', [
+            'date' => '2022-06-05',
+            'comment' => 'Roy Keane',
+
+        ]);
+
+        $this->get('/updateGPVisit/1');
+        $this->put('/completeGPVisitUpdate/1', [
+            'date' => '2022-06-05',
+            'comment' => 'Eric Cantona'
+        ])->assertSessionHasNoErrors()->assertRedirect('/gpTracker');
+    }
+
+    public function testDiaryDeleteRedirectsBackToDiaryPage()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/addDiary');
+        $this->post('addDiary/entry', [
+            'date' => '2022-06-05',
+            'stress' => 1,
+
+        ]);
+        
+        $this->get('/diary');
+        $this->get('/deleteDiaryEntry/1')->assertSessionHasNoErrors()->assertRedirect('/diary');
+    }
+
+    public function testGPVisitDeleteRedirectsBackToGPTrackerPage()
+    {
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ]);
+
+        $this->get('/gpTracker');
+        $this->get('/addGPVisit');
+        $this->post('/addGPVisit/entry', [
+            'date' => '2022-06-05',
+            'comment' => 'Roy Keane',
+
+        ]);
+
+        $this->get('/gpTracker');
+        $this->get('/deleteGPVisit/1')->assertSessionHasNoErrors()->assertRedirect('/gpTracker');
     }
 }
