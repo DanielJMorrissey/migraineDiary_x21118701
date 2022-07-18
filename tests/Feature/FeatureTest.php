@@ -12,7 +12,7 @@ class FeatureTest extends TestCase
 {
 
     /*
-        unit tests
+        test database
         test analysis results
     */
 
@@ -24,33 +24,7 @@ class FeatureTest extends TestCase
      * @return void
      */
 
-    public function test_homepage_successfully_loads()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_login_page_successfully_loads()
-    {
-        $response = $this->get('/loginpage');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_register_page_successfully_loads()
-    {
-        $response = $this->get('/register');
-
-        $response->assertStatus(200);
-    }
-
-    public function test_redirect_if_not_logged_in_or_registered()
-    {
-        $response = $this->get('/diary');
-
-        $response->assertRedirect('/loginpage');
-    }
+    
 
     public function test_register_redirects_to_diary_page()
     {
