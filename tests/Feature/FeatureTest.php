@@ -280,4 +280,63 @@ class FeatureTest extends TestCase
         $this->get('/gpTracker');
         $this->get('/deleteGPVisit/1')->assertSessionHasNoErrors()->assertRedirect('/gpTracker');
     }
+
+    /*
+        System test, keep at bottom
+    */
+
+    public function testSystemTesting()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+
+        $response = $this->get('/loginpage');
+
+        $response->assertStatus(200);
+
+        $response = $this->get('/register');
+
+        $response->assertStatus(200);
+
+        $response = $this->get('/diary');
+
+        $response->assertRedirect('/loginpage');
+
+        $this->post('computeRegister', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1',
+            'password1' => 'Daniel1'
+        ])->assertSessionHasNoErrors()->assertRedirect('/diary');
+
+        $this->get('/signout');
+        $this->get('/loginpage');
+        $this->post('computeLogin', [
+            'username' => 'Ben10',
+            'password' => 'Daniel1'
+        ])->assertSessionHasNoErrors()->assertRedirect('/diary');
+
+        $this->get('/diary');
+        $this->get('/addDiary');
+        $this->post('addDiary/entry', [
+            'date' => '2022-06-05',
+            'stress' => 1,
+
+        ])->assertSessionHasNoErrors()->assertRedirect('/diary');
+
+        $this->get('/gpTracker')->assertSessionHasNoErrors()->assertStatus(200);
+
+        $this->get('/addGPVisit');
+
+        $this->post('/addGPVisit/entry',[
+            'date' => '2022-05-22',
+            'gp' => 'Roy Keane'
+        ])->assertSessionHasNoErrors()->assertRedirect('/gpTracker');
+
+        $this->get('/analysis')->assertSessionHasNoErrors()->assertStatus(200);
+
+        $this->get('/')->assertSessionHasNoErrors()->assertStatus(200);
+
+        $this->get('/signout')->assertSessionHasNoErrors()->assertRedirect('/loginpage');
+    }
 }
