@@ -37,7 +37,7 @@
             </div>
         </div>
         @foreach ($gpVisits as $gpVisit)
-            <div class="container" style="border: 0.3em solid #000;margin:1em auto;width:40%;">
+            <div class="container card diaryEntry" style="box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);">
                 <div class='row'>
                     <h4 style="font-weight: bold;" class="col-2">
                         Date
@@ -47,14 +47,14 @@
                     </p>
                     
                         <a href="/updateGPVisit/{{ $gpVisit->id }}" class="col-2">
-                            <button >
+                            <button class="btn btn-primary" style="margin-top: 0.1em;">
                                 Update
                             </button>
                         </a>
                     
                     
                         <a href="/deleteGPVisit/{{ $gpVisit->id }}" class="col-2">
-                            <button> 
+                            <button class="btn btn-primary" style="margin-top: 0.1em;"> 
                                 Delete
                             </button>  
                         </a>

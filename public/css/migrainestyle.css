@@ -1,0 +1,13 @@
+#loginCard, #registerCard{
+    box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
+}
+
+.diaryEntry{
+    width:50%;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.trackerField, .diaryField{
+    margin-top: 1em;
+}

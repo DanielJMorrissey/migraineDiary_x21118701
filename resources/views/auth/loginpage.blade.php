@@ -9,7 +9,7 @@
         <div class="cotainer">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <div class="card">
+                    <div id="loginCard" class="card">
                         <h3 class="card-header text-center">Log In</h3>
                         <div class="card-body">
                             @if(session('failed'))

@@ -9,7 +9,7 @@
         <div class="cotainer">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <div class="card">
+                    <div id="registerCard" class="card">
                         <h3 class="card-header text-center">Register User</h3>
                         <div class="card-body">
                             <form action="{{ route('register.compute') }}" method="POST">
