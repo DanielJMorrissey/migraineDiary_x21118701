@@ -8,15 +8,16 @@
     <main>
         <div class="container">
             @if(session('dateRequired'))
-                <p class="text-danger">
+                <span class="text-danger">
                     {{ session('dateRequired') }}
-                </p>
+                </span>
             @elseif(session('notSaved'))
-                <p class="text-danger">
+                <span class="text-danger">
                     {{ session('notSaved') }}
-                </p>
+                </span>
             @endif
-            <form method="POST" action="{{ route('addedGPVisit') }}">
+            <span class="text-danger" id="dateError"></span>
+            <form id="form" method="POST" action="{{ route('addedGPVisit') }}">
                 @csrf
                 <div class="form-group row">
                     <label for="text" class="col-2 col-form-label">Date</label> 
@@ -46,7 +47,7 @@
                 </div> 
                 <div class="form-group row trackerField">
                     <div class="offset-5 col-12">
-                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>

@@ -8,15 +8,16 @@
     <main>
         <div class="container">
             @if(session('dateRequired'))
-                <p class="text-danger d-flex justify-content-center">
+                <span class="text-danger d-flex justify-content-center">
                     {{ session('dateRequired') }}
-                </p>
+                </span>
             @elseif(session('notUpdated'))
-                <p class="text-danger d-flex justify-content-center">
+                <span class="text-danger d-flex justify-content-center">
                     {{ session('notUpdated') }}
-                </p>
+                </span>
             @endif
-            <form method="POST" action="/completeUpdateDiary/{{ $diary->id }}">
+            <span class="text-danger" id="dateError"></span>
+            <form id="form" method="POST" action="/completeUpdateDiary/{{ $diary->id }}">
             @csrf
             @method('PUT')
             <div class="form-group row">
@@ -135,7 +136,7 @@
             </div> 
             <div class="form-group row diaryField">
                 <div class="offset-5 col-12">
-                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>
