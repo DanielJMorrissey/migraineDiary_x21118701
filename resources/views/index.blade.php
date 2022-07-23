@@ -7,7 +7,7 @@
 @section('maincontent')
     <main>
         <div class="container">
-            <div class="row d-flex align-items-center justify-content-center" style="text-align: justify;">
+            <div id="firstDiv" class="row d-flex align-items-center justify-content-center" style="display:none;text-align: justify;">
                 <p class="col-3">
                     Image
                 </p>
@@ -18,7 +18,7 @@
                 
             </div>
             <hr />
-            <div class="row">
+            <div id="secondDiv" class="row" style="display:none;">
                 <p class="col-8" style="text-align: justify;">
                     A migraine is a headache that ranges from moderate to severe with the pain being felt as throbbing. Migraines are usually felt on one side of the head and usually last from a few hours to 3 days. Migraines either come with a warning sign, no warning signs or even a warning sign with no headache. Warning signs, often called aura, vary from visual problems to numbness in the arm. Often there are other symptoms such as nausea and vomiting or even sweating.<br/><br/>
                     For more information go to the <a href="https://www.nhs.uk/conditions/migraine/">NHS website</a> or your GP for more information. 
@@ -28,7 +28,7 @@
                 </p>
             </div>
             <hr />
-            <div class="row">
+            <div id="thirdDiv" class="row" style="display:none;">
                 <p class="col-3">
                     Image
                 </p>
@@ -38,7 +38,7 @@
                 </p>
             </div>
             <hr />
-            <div class="row">
+            <div id="fourthDiv" class="row" style="display:none;">
                 <p class="col-8">
                     There are a number of things that can be considered a trigger. These triggers can consist of being stressed, not drinking enough water, chocolate, cheese among others. A bigger list can be found <a href="https://www.webmd.com/migraines-headaches/migraine-trigger-foods">here</a>, when you add a new diary entry or from your GP. Use the comment section of the diary entry if you do not see a dietary item or some other aspect of your lifestyle that is not listed when adding a new diary entry.
                 </p>

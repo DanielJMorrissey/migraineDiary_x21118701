@@ -54,3 +54,7 @@ Route::put('/completeGPVisitUpdate/{id}', [EntryController::class, 'updateGPVisi
 Route::get('/deleteGPVisit/{id}', [EntryController::class, 'deleteGPVisit'])->name('deleteGPVisit');
 
 Route::get('/analysis', [AuthorisationController::class, 'analysis'])->name('analysisPage');
+
+Route::fallback(function (){
+    return view('index');
+});

@@ -37,7 +37,7 @@
             </div>
         </div>
         @foreach ($diaries as $diary)
-            <div class="container card diaryEntry" style="box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);" >
+            <div class="container card diaryEntry" style="display:none;box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);" >
                 <div class='row'>
                     <h4 style="font-weight: bold;" class="col-2">
                         Date

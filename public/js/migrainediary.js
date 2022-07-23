@@ -116,3 +116,15 @@ function dateValidate(e){
         }
     }
 }
+
+
+
+
+$(document).ready(function(){
+    $('.diaryEntry').fadeIn(3500);
+
+    $('#firstDiv').fadeIn(2000);
+    $('#secondDiv').fadeIn(3000);
+    $('#thirdDiv').fadeIn(4000);
+    $('#fourthDiv').fadeIn(5000);
+});
