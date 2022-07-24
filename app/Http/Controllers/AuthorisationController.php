@@ -72,7 +72,7 @@ class AuthorisationController extends Controller
 
         if($info['password'] == $info['password1']){
             User::create([
-                'username' => $info['username'],
+                'username' => trim($info['username']),
                 'password' => Hash::make($info['password'])
             ]);
 

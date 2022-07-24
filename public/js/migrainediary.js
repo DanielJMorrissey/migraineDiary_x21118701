@@ -32,7 +32,8 @@ function init(e){
 
 function usernameValidate(e){
     var username = document.getElementById('username').value.trim();
-    username = username.trim();
+    var usernameTrim = document.getElementById('username');
+    usernameTrim.value = username;
     var submit = document.getElementById('submit');
     var usernameError = document.getElementById('usernameError');
     submit.disabled = false;
@@ -121,7 +122,7 @@ function dateValidate(e){
 
 
 $(document).ready(function(){
-    $('.diaryEntry').fadeIn(3500);
+    $('.diaryEntry').fadeIn(2500);
 
     $('#firstDiv').fadeIn(2000);
     $('#secondDiv').fadeIn(3000);
