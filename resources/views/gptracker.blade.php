@@ -39,21 +39,21 @@
         @foreach ($gpVisits as $gpVisit)
             <div class="container card diaryEntry" style="display:none;box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);">
                 <div class='row'>
-                    <h4 style="font-weight: bold;" class="col-2">
+                    <h4 style="font-weight: bold;" class="col-lg-2">
                         Date
                     </h4>
-                    <p class="col-2">
+                    <p class="col-lg-2">
                         {{ date('d-m-Y', strtotime($gpVisit->date)) }}
                     </p>
                     
-                        <a href="/updateGPVisit/{{ $gpVisit->id }}" class="col-2">
+                        <a href="/updateGPVisit/{{ $gpVisit->id }}" class="col-lg-2">
                             <button class="btn btn-primary" style="margin-top: 0.1em;">
                                 Update
                             </button>
                         </a>
                     
                     
-                        <a href="/deleteGPVisit/{{ $gpVisit->id }}" class="col-2">
+                        <a href="/deleteGPVisit/{{ $gpVisit->id }}" class="col-lg-2">
                             <button class="btn btn-primary" style="margin-top: 0.1em;"> 
                                 Delete
                             </button>  

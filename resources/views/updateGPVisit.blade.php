@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <label for="text" class="col-2 col-form-label">Date</label> 
                     <div class="col-10">
-                        <input id="date" name="date" type="date" value="{{ $updateGPVisit->date }}" class="form-control" required>
+                        <input id="date" name="date" type="date" value="{{ $updateGPVisit->date }}" class="form-control date" required>
                     </div>
                 </div>
                 <div class="form-group row trackerField">

@@ -8,6 +8,60 @@
     margin-bottom: 1.5em;
 }
 
+@media screen and (max-width: 1000px) {
+    .diaryEntry{
+        width: 70%;
+    }
+
+    #loginCard, #registerCard{
+        width: 150%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+
+@media screen and (max-width: 500px) {
+    .diaryEntry{
+        width: 90%;
+    }
+    
+    #stress, #dehydrated, #chocolate, #cheese, #yeast, #yoghurt, #fruit, #nuts, #olives, #tomato{
+        margin-top: 1.5em;
+        width: 60%;
+    }
+
+    #soy, #vinegar{
+        margin-top: 1.5em;
+        width: 60%;
+    }
+
+    .date1{
+        width: 90%;
+    }
+
+    .checkLabel{
+        margin-top: 1em;
+    }
+
+    #takenMeds, #comments, #advice, #medication{
+        width: 80%;
+        margin-left: auto;
+    }
+
+    #loginCard, #registerCard{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+#gp{
+        width: 100%;
+        margin-left: auto;
+    }
+
 .trackerField, .diaryField{
     margin-top: 1em;
 }

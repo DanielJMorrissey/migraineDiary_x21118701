@@ -22,11 +22,11 @@
             <div class="form-group row">
                 <label for="text" class="col-2 col-form-label">Date</label> 
                 <div class="col-10">
-                    <input id="date" name="date" type="date" class="form-control" required>
+                    <input id="date" name="date" type="date" class="form-control date1" required>
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Stressed</label> 
+                <label class="col-2 checkLabel">Stressed</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="stress" id="stress" type="checkbox" class="custom-control-input" value="1">
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Dehydrated</label> 
+                <label class="col-2 checkLabel">Dehydrated</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="dehydrated" id="dehydrated" type="checkbox" class="custom-control-input" value="1">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Chocolate</label> 
+                <label class="col-2 checkLabel">Chocolate</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="chocolate" id="chocolate" type="checkbox" class="custom-control-input" value="1">
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Cheese</label> 
+                <label class="col-2 checkLabel">Cheese</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="cheese" id="cheese" type="checkbox" class="custom-control-input" value="1">
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Yeast Products</label> 
+                <label class="col-2 checkLabel">Yeast Products</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="yeast" id="yeast" type="checkbox" class="custom-control-input" value="1">
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Yoghurt</label> 
+                <label class="col-2 checkLabel">Yoghurt</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="yoghurt" id="yoghurt" type="checkbox" class="custom-control-input" value="1">
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Citrus Fruits</label> 
+                <label class="col-2 checkLabel">Citrus Fruits</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="fruit" id="fruit" type="checkbox" class="custom-control-input" value="1">
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Nuts</label> 
+                <label class="col-2 checkLabel">Nuts</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="nuts" id="nuts" type="checkbox" class="custom-control-input" value="1">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Olives</label> 
+                <label class="col-2 checkLabel">Olives</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="olives" id="olives" type="checkbox" class="custom-control-input" value="1">
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Tomato</label> 
+                <label class="col-2 checkLabel">Tomato</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="tomato" id="tomato" type="checkbox" class="custom-control-input" value="1">
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField">
-                <label class="col-2">Soy</label> 
+                <label class="col-2 checkLabel">Soy</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="soy" id="soy" type="checkbox" class="custom-control-input" value="1">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="form-group row diaryField" >
-                <label class="col-2">Vinegar</label> 
+                <label class="col-2 checkLabel">Vinegar</label> 
                 <div class="col-10">
                     <div class="custom-control custom-checkbox custom-control-inline">
                         <input name="vinegar" id="vinegar" type="checkbox" class="custom-control-input" value="1">
@@ -129,7 +129,7 @@
             </div>
             <div class="form-group row diaryField">
                 <label for="comments" class="col-2 col-form-label">Comment</label> 
-                <div class="col-10">
+                <div class="col-10 ml-auto">
                     <textarea id="comments" name="comment" cols="40" rows="5" class="form-control"></textarea>
                 </div>
             </div> 
