@@ -17,10 +17,11 @@
                 </span>
             @endif
             <span class="text-danger" id="dateError"></span>
+            <span>* - required</span>
             <form id="form" method="POST" action="{{ route('addedGPVisit') }}">
                 @csrf
                 <div class="form-group row">
-                    <label for="text" class="col-2 col-form-label">Date</label> 
+                    <label for="text" class="col-2 col-form-label">Date*</label> 
                     <div class="col-10">
                         <input id="date" name="date" type="date" class="form-control" required>
                     </div>
