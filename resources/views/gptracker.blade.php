@@ -27,6 +27,10 @@
                 <p class="text-danger d-flex justify-content-center">
                     {{ session('notUpdated') }}
                 </p>
+            @elseif(session('doesNotExist'))
+                <p class="text-danger d-flex justify-content-center">
+                    {{ session('doesNotExist') }}
+                </p>
             @endif
             <div class="offset-4 col-8" style="width:80%;margin:0em auto;text-align:center;" >
                 <a href="/addGPVisit" style="color:#000;">

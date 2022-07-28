@@ -47,7 +47,7 @@ class EntryController extends Controller
         } else{
             $diaryEntry->low_water_intake = 0;
         }
-        if(isset($data['choclate'])){
+        if(isset($data['chocolate'])){
             $diaryEntry->chocolate = $data['chocolate'];
         } else{
             $diaryEntry->chocolate = 0;

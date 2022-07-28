@@ -35,11 +35,11 @@ Route::get('/addDiary', [AuthorisationController::class, 'addDiary'])->name('add
 
 Route::post('/addDiary/entry', [EntryController::class, 'addDiaryEntry'])->name('addDiaryEntry');
 
-Route::get('/updateDiary/{id}', [AuthorisationController::class, 'edit'])->name('updateDiaryEntry');
+Route::get('/updateDiary/{id}', [AuthorisationController::class, 'edit'])->name('updateDiaryEntry')->where('id', '[0-9]+');
 
-Route::put('/completeUpdateDiary/{id}', [EntryController::class, 'update'])->name('updateComplete');
+Route::put('/completeUpdateDiary/{id}', [EntryController::class, 'update'])->name('updateComplete')->where('id', '[0-9]+');
 
-Route::get('/deleteDiaryEntry/{id}', [EntryController::class, 'delete'])->name('deleteDiaryEntry');
+Route::get('/deleteDiaryEntry/{id}', [EntryController::class, 'delete'])->name('deleteDiaryEntry')->where('id', '[0-9]+');
 
 Route::get('/gpTracker', [AuthorisationController::class, 'gpTracker'])->name('gpTracker');
 
@@ -47,11 +47,11 @@ Route::get('/addGPVisit', [AuthorisationController::class, 'addGPVisit'])->name(
 
 Route::post('/addGPVisit/entry', [EntryController::class, 'addGPVisitEntry'])->name('addedGPVisit');
 
-Route::get('/updateGPVisit/{id}', [AuthorisationController::class, 'editGPVisit'])->name('updateGPVisit');
+Route::get('/updateGPVisit/{id}', [AuthorisationController::class, 'editGPVisit'])->name('updateGPVisit')->where('id', '[0-9]+');
 
-Route::put('/completeGPVisitUpdate/{id}', [EntryController::class, 'updateGPVisit'])->name('updateGPVisitComplete');
+Route::put('/completeGPVisitUpdate/{id}', [EntryController::class, 'updateGPVisit'])->name('updateGPVisitComplete')->where('id', '[0-9]+');
 
-Route::get('/deleteGPVisit/{id}', [EntryController::class, 'deleteGPVisit'])->name('deleteGPVisit');
+Route::get('/deleteGPVisit/{id}', [EntryController::class, 'deleteGPVisit'])->name('deleteGPVisit')->where('id', '[0-9]+');
 
 Route::get('/analysis', [AuthorisationController::class, 'analysis'])->name('analysisPage');
 

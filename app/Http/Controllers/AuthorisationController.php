@@ -107,6 +107,10 @@ class AuthorisationController extends Controller
     {
         if(Auth::check()){
             $diary = Diary::find($id);
+            if($diary == null){
+                $doesNotExist = 'Diary entry does not exist.';
+                return redirect('diary')->with('doesNotExist', $doesNotExist);
+            }
             return view('update', compact('diary'));
         }
 
@@ -161,6 +165,10 @@ class AuthorisationController extends Controller
     public function editGPVisit($id){
         if(Auth::check()){
             $updateGPVisit = GPTracker::find($id);
+            if($updateGPVisit == null){
+                $doesNotExist = 'GP Visit does not exist.';
+                return redirect('gpTracker')->with('doesNotExist', $doesNotExist);
+            }
             return view('updateGPVisit', compact('updateGPVisit'));
         }
 
@@ -169,76 +177,87 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    
+
     public function analysis(){
+
+        function percentageCalc($attribute){
+        return ((Diary::where('user_id', Auth::user()->id)->where($attribute, 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+        }
+
+        function countCheck($attribute){
+            return Diary::where('user_id', Auth::user()->id)->where($attribute, 1)->count();
+        }
+
         if(Auth::check()){
-            if(Diary::where('user_id', Auth::user()->id)->where('stress', 1)->count() != 0){
-                $stressPercent = ((Diary::where('user_id', Auth::user()->id)->where('stress', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('stress') != 0){
+                $stressPercent = percentageCalc('stress');
                 $stressPercent = round($stressPercent, 2);
             } else {
                 $stressPercent = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('low_water_intake', 1)->count() != 0){
-                $hydrated = ((Diary::where('user_id', Auth::user()->id)->where('low_water_intake', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('low_water_intake') != 0){
+                $hydrated = percentageCalc('low_water_intake');
                 $hydrated = round($hydrated, 2);
             } else {
                 $hydrated = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('chocolate', 1)->count() != 0){
-                $chocolate = ((Diary::where('user_id', Auth::user()->id)->where('chocolate', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('chocolate') != 0){
+                $chocolate = percentageCalc('chocolate');
                 $chocolate = round($chocolate, 2);
             } else {
                 $chocolate = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('cheese', 1)->count() != 0){
-                $cheese = ((Diary::where('user_id', Auth::user()->id)->where('cheese', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('cheese') != 0){
+                $cheese = percentageCalc('cheese');
                 $cheese = round($cheese, 2);
             } else {
                 $cheese = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('yeast_goods', 1)->count() != 0){
-                $yeast_goods = ((Diary::where('user_id', Auth::user()->id)->where('yeast_goods', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('yeast_goods') != 0){
+                $yeast_goods = percentageCalc('yeast_goods');
                 $yeast_goods = round($yeast_goods, 2);
             } else {
                 $yeast_goods = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('yoghurt', 1)->count() != 0){
-                $yoghurt = ((Diary::where('user_id', Auth::user()->id)->where('yoghurt', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('yoghurt') != 0){
+                $yoghurt = percentageCalc('yoghurt');
                 $yoghurt = round($yoghurt, 2);
             } else {
                 $yoghurt = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('fruit', 1)->count() != 0){
-                $fruit = ((Diary::where('user_id', Auth::user()->id)->where('fruit', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('fruit') != 0){
+                $fruit = percentageCalc('fruit');
                 $fruit = round($fruit, 2);
             } else {
                 $fruit = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('nuts', 1)->count() != 0){
-                $nuts = ((Diary::where('user_id', Auth::user()->id)->where('nuts', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('nuts') != 0){
+                $nuts = percentageCalc('nuts');
                 $nuts = round($nuts, 2);
             } else {
                 $nuts = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('olives', 1)->count() != 0){
-                $olives = ((Diary::where('user_id', Auth::user()->id)->where('olives', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('olives') != 0){
+                $olives = percentageCalc('olives');
                 $olives = round($olives, 2);
             } else {
                 $olives = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('tomato', 1)->count() != 0){
-                $tomato = ((Diary::where('user_id', Auth::user()->id)->where('tomato', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('tomato') != 0){
+                $tomato = percentageCalc('tomato');
                 $tomato = round($tomato, 2);
             } else {
                 $tomato = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('soy', 1)->count() != 0){
-                $soy = ((Diary::where('user_id', Auth::user()->id)->where('soy', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('soy') != 0){
+                $soy = percentageCalc('soy');
                 $soy = round($soy, 2);
             } else {
                 $soy = 0;
             }
-            if(Diary::where('user_id', Auth::user()->id)->where('vinegar', 1)->count() != 0){
-                $vinegar = ((Diary::where('user_id', Auth::user()->id)->where('vinegar', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
+            if(countCheck('vinegar') != 0){
+                $vinegar = percentageCalc('vinegar');
                 $vinegar = round($vinegar, 2);
             } else {
                 $vinegar = 0;
@@ -265,4 +284,6 @@ class AuthorisationController extends Controller
         
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
+
+    
 }
