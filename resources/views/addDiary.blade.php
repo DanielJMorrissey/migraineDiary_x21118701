@@ -7,6 +7,7 @@
 @section('maincontent')
     <main>
         <div class="container">
+            {{-- error messages --}}
             @if(session('dateRequired'))
                 <span class="text-danger">
                     {{ session('dateRequired') }}
@@ -18,7 +19,9 @@
             @endif
             <span class="text-danger" id="dateError"></span>
             <span>* - required</span>
+            {{-- form for diary entry --}}
             <form id="form" method="POST" action="{{ route('addDiaryEntry') }}">
+                {{-- @csrf prevents a CSRF eploit --}}
             @csrf
             <div class="form-group row">
                 <label for="text" class="col-2 col-form-label">Date*</label> 
@@ -26,6 +29,7 @@
                     <input id="date" name="date" type="date" class="form-control date1" required>
                 </div>
             </div>
+            {{-- checkboxes for triggers, will supply data as 1 = true, 0 = false --}}
             <div class="form-group row diaryField">
                 <label class="col-2 checkLabel">Stressed</label> 
                 <div class="col-10">
@@ -122,12 +126,14 @@
                     </div>
                 </div>
             </div>
+            {{-- medication field where what medication is taken --}}
             <div class="form-group row diaryField">
                 <label for="takenMeds" class="col-2 col-form-label">Medication Taken</label> 
                 <div class="col-10">
                     <textarea id="takenMeds" name="takenMeds" cols="40" rows="5" class="form-control"></textarea>
                 </div>
             </div>
+            {{-- comment field for any other information --}}
             <div class="form-group row diaryField">
                 <label for="comments" class="col-2 col-form-label">Comment</label> 
                 <div class="col-10 ml-auto">

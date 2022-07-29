@@ -1,10 +1,5 @@
 <?php
 
-/*
-    need to customise look
-    check for other bugs
-*/
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,9 +13,10 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthorisationController extends Controller
 {
-    # index
+    # log in page
     public function loginPage()
     {
+        # will only show log in page if not logged in
         if (!Auth::check()){
             return view('auth.loginpage'); 
         } else{
@@ -29,9 +25,10 @@ class AuthorisationController extends Controller
         
     }
 
-    # customLogin
+    # computes log in
     public function completeLogin(Request $request)
     {
+        # server-side validation of log in form
         $request->validate([
             'username' => 'required',
             'password' => 'required',
@@ -40,18 +37,20 @@ class AuthorisationController extends Controller
         $successful = 'Welcome User!';
         $failedLogin = 'Error! Entered details are not valid, please try again or register an account!';
 
-        # diary
+        # checks database to verify user
         $verifications = $request->only('username', 'password');
         if (Auth::attempt($verifications)) {
             return redirect('diary')->with('success', $successful);
         }
 
+        # goes back to log in page if failed
         return redirect('loginpage')->with('failed', $failedLogin);
     }
 
     # registration
     public function registerPage()
     {
+        # only shows register page when user is not logged in
         if (!Auth::check()){
             return view('auth.registerpage');
         } else {
@@ -59,8 +58,10 @@ class AuthorisationController extends Controller
         }
     }
 
+    # computes registration
     public function computeRegistration(Request $request)
     {
+        # server-side validation of registration form
         $request->validate([
             'username' => 'required|unique:users',
             'password' => ['required', Password::min(7)->letters()->mixedCase()->numbers()],
@@ -70,17 +71,16 @@ class AuthorisationController extends Controller
 
         $info = $request->all();
 
+        # creates a record of user and logs the user in
         if($info['password'] == $info['password1']){
             User::create([
                 'username' => trim($info['username']),
                 'password' => Hash::make($info['password'])
             ]);
 
-            $successRegistration = 'You have created an account!';
-
             $verifications = $request->only('username', 'password');
             if (Auth::attempt($verifications)) {
-                return redirect('diary')->with('successReg', $successRegistration);
+                return redirect('diary');
             }
             
         } else {
@@ -90,6 +90,7 @@ class AuthorisationController extends Controller
         
     }
 
+    # displays migraine diary page with any previous entries if user is logged in
     public function diary(){
         if(Auth::check()){
             $data = Diary::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->get();
@@ -103,6 +104,7 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    # updates a diary entry
     public function edit($id)
     {
         if(Auth::check()){
@@ -119,6 +121,7 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    # adds a new diary entry
     public function addDiary()
     {
         if(Auth::check()){
@@ -130,6 +133,7 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    # logs user out
     public function logOut(){
         Session::flush();
         Auth::logout();
@@ -139,6 +143,7 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('loggedOut', $loggedOut);
     }
 
+    # GP Tracker page with past GP visits
     public function gpTracker(){
         if(Auth::check()){
             $gpVisits = GPTracker::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->get();
@@ -152,6 +157,7 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    # Adds a GP visit
     public function addGPVisit(){
         if(Auth::check()){
             return view('addGPTracker');
@@ -162,6 +168,7 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
+    # updates a GP visit entry
     public function editGPVisit($id){
         if(Auth::check()){
             $updateGPVisit = GPTracker::find($id);
@@ -177,87 +184,78 @@ class AuthorisationController extends Controller
         return redirect('loginpage')->with('noAccess', $noAccess);
     }
 
-    
-
+    # analysis page wih the results of the analysis
     public function analysis(){
 
-        function percentageCalc($attribute){
-        return ((Diary::where('user_id', Auth::user()->id)->where($attribute, 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
-        }
-
-        function countCheck($attribute){
-            return Diary::where('user_id', Auth::user()->id)->where($attribute, 1)->count();
-        }
-
         if(Auth::check()){
-            if(countCheck('stress') != 0){
-                $stressPercent = percentageCalc('stress');
+            if(Diary::where('user_id', Auth::user()->id)->where('stress', 1)->count() != 0){
+                $stressPercent = ((Diary::where('user_id', Auth::user()->id)->where('stress', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $stressPercent = round($stressPercent, 2);
             } else {
                 $stressPercent = 0;
             }
-            if(countCheck('low_water_intake') != 0){
-                $hydrated = percentageCalc('low_water_intake');
+            if(Diary::where('user_id', Auth::user()->id)->where('low_water_intake', 1)->count() != 0){
+                $hydrated = ((Diary::where('user_id', Auth::user()->id)->where('low_water_intake', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $hydrated = round($hydrated, 2);
             } else {
                 $hydrated = 0;
             }
-            if(countCheck('chocolate') != 0){
-                $chocolate = percentageCalc('chocolate');
+            if(Diary::where('user_id', Auth::user()->id)->where('chocolate', 1)->count() != 0){
+                $chocolate = ((Diary::where('user_id', Auth::user()->id)->where('chocolate', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $chocolate = round($chocolate, 2);
             } else {
                 $chocolate = 0;
             }
-            if(countCheck('cheese') != 0){
-                $cheese = percentageCalc('cheese');
+            if(Diary::where('user_id', Auth::user()->id)->where('cheese', 1)->count() != 0){
+                $cheese = ((Diary::where('user_id', Auth::user()->id)->where('cheese', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $cheese = round($cheese, 2);
             } else {
                 $cheese = 0;
             }
-            if(countCheck('yeast_goods') != 0){
-                $yeast_goods = percentageCalc('yeast_goods');
+            if(Diary::where('user_id', Auth::user()->id)->where('yeast_goods', 1)->count() != 0){
+                $yeast_goods = ((Diary::where('user_id', Auth::user()->id)->where('yeast_goods', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $yeast_goods = round($yeast_goods, 2);
             } else {
                 $yeast_goods = 0;
             }
-            if(countCheck('yoghurt') != 0){
-                $yoghurt = percentageCalc('yoghurt');
+            if(Diary::where('user_id', Auth::user()->id)->where('yoghurt', 1)->count() != 0){
+                $yoghurt = ((Diary::where('user_id', Auth::user()->id)->where('yoghurt', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $yoghurt = round($yoghurt, 2);
             } else {
                 $yoghurt = 0;
             }
-            if(countCheck('fruit') != 0){
-                $fruit = percentageCalc('fruit');
+            if(Diary::where('user_id', Auth::user()->id)->where('fruit', 1)->count() != 0){
+                $fruit = ((Diary::where('user_id', Auth::user()->id)->where('fruit', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $fruit = round($fruit, 2);
             } else {
                 $fruit = 0;
             }
-            if(countCheck('nuts') != 0){
-                $nuts = percentageCalc('nuts');
+            if(Diary::where('user_id', Auth::user()->id)->where('nuts', 1)->count() != 0){
+                $nuts = ((Diary::where('user_id', Auth::user()->id)->where('nuts', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $nuts = round($nuts, 2);
             } else {
                 $nuts = 0;
             }
-            if(countCheck('olives') != 0){
-                $olives = percentageCalc('olives');
+            if(Diary::where('user_id', Auth::user()->id)->where('olives', 1)->count() != 0){
+                $olives = ((Diary::where('user_id', Auth::user()->id)->where('olives', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $olives = round($olives, 2);
             } else {
                 $olives = 0;
             }
-            if(countCheck('tomato') != 0){
-                $tomato = percentageCalc('tomato');
+            if(Diary::where('user_id', Auth::user()->id)->where('tomato', 1)->count() != 0){
+                $tomato = ((Diary::where('user_id', Auth::user()->id)->where('tomato', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $tomato = round($tomato, 2);
             } else {
                 $tomato = 0;
             }
-            if(countCheck('soy') != 0){
-                $soy = percentageCalc('soy');
+            if(Diary::where('user_id', Auth::user()->id)->where('soy', 1)->count() != 0){
+                $soy = ((Diary::where('user_id', Auth::user()->id)->where('soy', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $soy = round($soy, 2);
             } else {
                 $soy = 0;
             }
-            if(countCheck('vinegar') != 0){
-                $vinegar = percentageCalc('vinegar');
+            if(Diary::where('user_id', Auth::user()->id)->where('vinegar', 1)->count() != 0){
+                $vinegar = ((Diary::where('user_id', Auth::user()->id)->where('vinegar', 1)->count()) / Diary::where('user_id', Auth::user()->id)->count()) * 100;
                 $vinegar = round($vinegar, 2);
             } else {
                 $vinegar = 0;

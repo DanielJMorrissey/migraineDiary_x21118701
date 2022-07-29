@@ -7,6 +7,7 @@
 @section('maincontent')
     <main>
         <div class="form-group row d-flex justify-content-center" >
+            {{-- user feedback --}}
             @if(session('saved'))
                 <p class="text-success d-flex justify-content-center">
                     {{ session('saved') }}
@@ -32,7 +33,7 @@
                     {{ session('doesNotExist') }}
                 </p>
             @endif
-            <div class="offset-4 col-8" style="width:80%;margin:0em auto;text-align:center;" >
+            <div class="offset-5 col-8" style="width:80%;margin:0em auto;text-align:center;" >
                 <a href="/addGPVisit" style="color:#000;">
                     <button class="btn btn-primary">
                         Add GP Visit 
@@ -40,6 +41,7 @@
                 </a>
             </div>
         </div>
+        {{-- gp visit entries displayed here --}}
         @foreach ($gpVisits as $gpVisit)
             <div class="container card diaryEntry" style="display:none;box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);">
                 <div class='row'>
@@ -49,7 +51,7 @@
                     <p class="col-lg-2">
                         {{ date('d-m-Y', strtotime($gpVisit->date)) }}
                     </p>
-                    
+                        {{-- update and display buttons for crud --}}
                         <a href="/updateGPVisit/{{ $gpVisit->id }}" class="col-lg-2">
                             <button class="btn btn-primary" style="margin-top: 0.1em;">
                                 Update

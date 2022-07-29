@@ -7,6 +7,7 @@
 @section('maincontent')
     <main>
         <div class="container">
+        {{-- same as addGPTracker.blade.php but containes old values by checking data passed to view from database --}}
             @if(session('dateRequired'))
                 <span class="text-danger d-flex justify-content-center">
                     {{ session('dateRequired') }}

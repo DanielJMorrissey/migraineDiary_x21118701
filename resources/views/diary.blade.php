@@ -6,6 +6,7 @@
 @endsection
 @section('maincontent')
     <main>
+        {{-- user feedback --}}
         <div class="form-group row d-flex justify-content-center" >
             @if(session('saved'))
                 <p class="text-success d-flex justify-content-center">
@@ -32,7 +33,7 @@
                     {{ session('doesNotExist') }}
                 </p>
             @endif
-            <div class="offset-4 col-8" style="width:80%;margin:0em auto;text-align:center;" >
+            <div class="offset-5 col-8" style="width:80%;margin:0em auto;text-align:center;" >
                 <a href="/addDiary" style="color:#000;">
                     <button class="btn btn-primary">
                         Add Diary Entry 
@@ -40,6 +41,7 @@
                 </a>
             </div>
         </div>
+        {{-- diary entry data is displayed here --}}
         @foreach ($diaries as $diary)
             <div class="container card diaryEntry" style="display:none;box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);" >
                 <div class='row'>
@@ -49,7 +51,7 @@
                     <p class="col-lg-2">
                         {{ date('d-m-Y', strtotime($diary->date)) }}
                     </p>
-                    
+                        {{-- update and delete buttons for crud --}}
                         <a href="updateDiary/{{ $diary->id }}" class="col-lg-2">
                             <button class="btn btn-primary" style="margin-top: 0.1em;">
                                 Update
@@ -64,7 +66,7 @@
                         </a>
                      
                 </div>
-                
+                {{-- if a trigger was checked in the diary submission, it'll be displayed here, triggers are stored in the database as 1 = true, 0 = false --}}
                 <hr />
                 @if($diary->stress == 1)
                     <p>

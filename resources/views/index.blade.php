@@ -6,6 +6,9 @@
 @endsection
 @section('maincontent')
     <main>
+        {{-- 
+            homepage to provide info on what migraines are, how to use this web app, how to treat migraines and the triggers 
+        --}}
         <div class="container">
             <div id="firstDiv" class="row d-flex align-items-center justify-content-center" style="display:none;text-align: justify;">
                 <p class="col-lg-3">

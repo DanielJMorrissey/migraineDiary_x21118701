@@ -12,6 +12,7 @@
                     <div id="registerCard" class="card">
                         <h3 class="card-header text-center">Register User</h3>
                         <div class="card-body">
+                            {{-- registration form that asks for username and password twice with instructions --}}
                             <form action="{{ route('register.compute') }}" method="POST">
                                 @csrf
                                 <div class="form-group mb-3">

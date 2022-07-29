@@ -16,6 +16,13 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
+                    {{-- 
+                        Navigation menu
+                        links between @guest and @else show when user is not logged in
+                        links between @else and @endguest show when user is logged in
+                        home link will show regardless if user is logged in or not
+                        route function uses the name of the route in routes/web.php, this makes changes easier to make    
+                    --}}
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>

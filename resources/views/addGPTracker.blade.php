@@ -7,6 +7,7 @@
 @section('maincontent')
     <main>
         <div class="container">
+            {{-- error messages --}}
             @if(session('dateRequired'))
                 <span class="text-danger">
                     {{ session('dateRequired') }}

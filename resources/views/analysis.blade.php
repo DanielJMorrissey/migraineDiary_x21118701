@@ -7,6 +7,9 @@
 @section('maincontent')
     <main>
         <div class="container">
+            {{--
+                Table with list of triggers that show the percentage of migraines that followed the relevant trigger      
+            --}}
             <table class="container table table-striped">
                 <tr>
                     <th scope="col">Trigger</th><th scope="col">Percentage</th>

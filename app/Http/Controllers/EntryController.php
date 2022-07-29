@@ -11,14 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class EntryController extends Controller
 {
 
-    /*
-        check for bugs
-        find a way to prevent wrong deletion
-        create images of gp tracker stuff
-    */
-
+    # processes new diary entry
     public function addDiaryEntry(Request $request)
     {
+        # server-side validation
         $rules = [
             'date' => 'required|date',
         ];
@@ -29,10 +25,13 @@ class EntryController extends Controller
             return redirect()->back()->with('dateRequired', 'The date is required!');
         }
 
+        # gathering data from request
         $todaysDate = date('Y-m-d');
         $data = $request->all();
         $diaryEntry = new Diary();
         $diaryEntry->user_id = Auth::user()->id;
+
+        # ensures date is todays date or before only
         $diaryEntry->date = $data['date'];
         if($diaryEntry->date > $todaysDate){
             return redirect()->back()->with('dateRequired', 'Date can only be todays date or the past!');
@@ -112,6 +111,7 @@ class EntryController extends Controller
 
         $saved = 'Your entry was saved!';
 
+        # if can't save, return to form
         if (!$diaryEntry->save())
         {
             return redirect()->back()->with('notSaved', $notSaved);
@@ -122,6 +122,7 @@ class EntryController extends Controller
         return redirect('diary')->with('saved', $saved);
     }
 
+    # update diary entry, main difference from adding a new entry entry is that it loads the record
     public function update(Request $request, $id)
     {
         $rules = [
@@ -135,6 +136,8 @@ class EntryController extends Controller
         }
 
         $todaysDate = date('Y-m-d');
+
+        # loads record here
         $diary = Diary::find($id);
         $data = $request->all();
         $diary->date = $data['date'];
@@ -225,6 +228,7 @@ class EntryController extends Controller
         return redirect('diary')->with('updated', $updated);
     }
 
+    # deletes diary entry
     public function delete($id)
     {
         $diary = Diary::find($id);
@@ -242,6 +246,7 @@ class EntryController extends Controller
         
     }
 
+    # add GP visit, similar to adding new diary entry
     public function addGPVisitEntry(Request $request){
         $rules = [
             'date' => 'required|date',
@@ -291,6 +296,7 @@ class EntryController extends Controller
         return redirect('gpTracker')->with('saved', $saved);
     }
 
+    # updates GP visit entry, similar to diary
     public function updateGPVisit(Request $request, $id){
         $rules = [
             'date' => 'required|date',
@@ -338,6 +344,7 @@ class EntryController extends Controller
         return redirect('gpTracker')->with('updated', $updated);
     }
 
+    # deletes GP visit entry, similar to diary
     public function deleteGPVisit($id){
         $deleteGPVisit = GPTracker::find($id);
 

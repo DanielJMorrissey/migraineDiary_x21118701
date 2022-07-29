@@ -12,14 +12,10 @@
                     <div id="loginCard" class="card">
                         <h3 class="card-header text-center">Log In</h3>
                         <div class="card-body">
+                            {{-- user feedback --}}
                             @if(session('failed'))
                                 <small class="text-danger">
                                     {{ session('failed') }}
-                                </small>
-                                
-                            @elseif(session('successReg'))
-                                <small class="text-success">
-                                    {{ session('successReg') }}
                                 </small>
                             @elseif(session('noAccess'))
                                 <small class="text-danger">
@@ -30,11 +26,11 @@
                                     {{ session('loggedOut') }}
                                 </small>    
                             @endif
-                            <form method="POST" action="{{ route('login.custom') }}">
+                            {{-- log in form that asks for username and password --}}
+                            <form method="POST" action="{{ route('customLogin') }}">
                                 @csrf
                                 <div class="form-group mb-3">
-                                    <input type="text" placeholder="Username" id="username" class="form-control" name="username" required
-                                        autofocus>
+                                    <input type="text" placeholder="Username" id="username" class="form-control" name="username" required autofocus>
                                     @if ($errors->has('username'))
                                     <span class="text-danger">{{ $errors->first('username') }}</span>
                                     @endif
