@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="migraine, Migraine, headache, headaches, diary, GP, gp, analysis, migraine trigger, migraine triggers, trigger, triggers" />
+        <meta name="description" content="an online migraine diary with GP visit tracking and analysis of potential migraine triggers to aid in the determination of a persons migraine trigger or triggers" />
         @yield('title')
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
