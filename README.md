@@ -85,7 +85,7 @@ Instructions below show how to create a Laravel project
 
 - Open the command prompt or terminal
 - Enter the command to start a new project in the desired folder: composer create-project laravel/laravel name_of_project
-- Alternatively, you can create a project with the comman: laravel new name_of_project
+- Alternatively, you can create a project with the command: laravel new name_of_project
 - A laravel project should be created
 - cd into project
 - Enter the command: php artisan serve
