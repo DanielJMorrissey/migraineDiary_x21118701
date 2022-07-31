@@ -1,35 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Migraine Diary
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This web application provides an online resource for a migraine sufferer to provide a more organised means of maintaining a migraine diary and to provide indications of the users possible triggers. The web application has the following:
 
-## About Laravel
+- General Information Homepage
+- Log In and Registration System
+- Migraine Diary (View diary entries in chronological order, most recent first, update and delete entries)
+- GP Tracker (View GP visit entries in chronological order, most recent first, update and delete entries)
+- Analysis
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Dependencies
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Composer
+- Laravel
+- SQLite
+- PHP
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How to install PHP
+**Installation instructions is based on a windows operating system and linux, PHP should be pre-installed in macOS**
 
-## Learning Laravel
+**Windows**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+[Instructions found at sitepoint](https://www.sitepoint.com/how-to-install-php-on-windows/)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- [Head to PHP download page](https://www.php.net/downloads)
+- Apache should be optional
+- Click on 'Windows Downloads
+- Download the **Thread Safe** zip file
+- Create a new php folder in the root of the C:\ drive and extract the contents of the zip file into the new php folder (can be stored anywhere but is easier to create paths from there)
+- In the php folder, create a new file called php.ini
+- Copy the contents of php.ini-development into the php.ini (several lines may need to be changed, usually by removing the ; to uncomment that setting. [**Follow step 3 of How to install PHP**](https://www.sitepoint.com/how-to-install-php-on-windows/))
+- Search for 'environment' in the windows search and click on **Edit the system environment variables**
+- Select the Advanced tab
+- Click the Environment Variables button
+- Scroll down the System Variables list until you find Path
+- Click on Path and then click the Edit button
+- Click New and add C:\php
+- Click the OK button on all application windows
+- Open the command prompt and type 'php -v'
+- The version should displayed
 
-## Laravel Sponsors
+**Linux**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+[Instructions found at GeeksforGeeks](https://www.geeksforgeeks.org/how-to-install-php-on-linux/)
+
+- Open the terminal
+- Enter: sudo apt-get update
+- Enter: sudo apt-get upgrade
+- Enter: sudo apt-get install php
+- Enter Y for any prompts
+- Enter: php -v
+- The version should be displayed
 
 ### Premium Partners
 
