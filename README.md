@@ -51,34 +51,48 @@ This web application provides an online resource for a migraine sufferer to prov
 - Enter: php -v
 - The version should be displayed
 
-### Premium Partners
+### How to Install SQLite
+**Installation instructions is based on a windows operating system, SQLite should be pre-installed in macOS and Linux**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+**Windows**
 
-## Contributing
+- Go to the [SQLite download page](https://www.sqlite.org/download.html)
+- In the Precompiled Binaries for Windows Section, download the 'sqlite-tools-win32-x86-.... .zip' file (the .... would be a series of numbers)
+- In the C:\ root, create a folder called sqlite
+- Extract the content of the zip file into the sqlite folder
+- Search for 'environment' in the windows search and click on **Edit the system environment variables**
+- Select the Advanced tab
+- Click the Environment Variables button
+- Scroll down the System Variables list until you find Path
+- Click on Path and then click the Edit button
+- Click New and add C:\sqlite
+- Click the OK button on all application windows
+- Open the command prompt and type 'sqlite3'
+- The SQLite shell should displayed
+- Press ctrl + c to exit
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+[Instructions are found at this link](https://www.sqlitetutorial.net/download-install-sqlite/)
 
-## Code of Conduct
+However, adding to System variables is not shown in the link above but it allows sqlite shell to be accessed anywhere, otherwise navigate to the folder and enter sqlite3
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## How to install composer
 
-## Security Vulnerabilities
+To install composer follow the instructions on this [link](https://getcomposer.org/doc/00-intro.md)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## How to install Laravel
 
-## License
+Instructions below show how to create a Laravel project
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Open the command prompt or terminal
+- Enter the command to start a new project in the desired folder: composer create-project laravel/laravel name_of_project
+- Alternatively, you can create a project with the comman: laravel new name_of_project
+- A laravel project should be created
+- cd into project
+- Enter the command: php artisan serve
+- A URL should be provided, copy and paste into the browser
+- A laravel splash page should be displayed
+- Visit the [Laravel Documentation](https://laravel.com/docs/9.x) for other configurations
+
+For this web application, clone the code into the desired folder and then cd into the project root folder in the command prompt or terminal and enter the command: php artisan serve
+
+Enter the URL provided into a browser and the homepage of the web application should display
