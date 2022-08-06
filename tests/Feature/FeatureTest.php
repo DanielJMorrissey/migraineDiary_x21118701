@@ -5,11 +5,12 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeatureTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -130,7 +131,7 @@ class FeatureTest extends TestCase
 
         $this->get('/addDiary');
         $this->post('addDiary/entry', [
-            'date' => '2022-08-05',
+            'date' => '2027-08-05',
             'stress' => 1,
 
         ])->assertSessionHasNoErrors()->assertRedirect('/addDiary');
@@ -165,7 +166,7 @@ class FeatureTest extends TestCase
         $this->get('/addGPVisit');
 
         $this->post('/addGPVisit/entry', [
-            'date' => '2022-08-05',
+            'date' => '2027-08-05',
             'stress' => 1,
 
         ])->assertSessionHasNoErrors()->assertRedirect('/addGPVisit');
