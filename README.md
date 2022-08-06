@@ -93,6 +93,8 @@ Instructions below show how to create a Laravel project
 - A laravel splash page should be displayed
 - Visit the [Laravel Documentation](https://laravel.com/docs/9.x) for other configurations
 
-For this web application, clone the code into the desired folder and then cd into the project root folder in the command prompt or terminal and enter the command: php artisan serve
+For this web application, clone the code or download the zip file by clicking the code button, found next to the about section into the desired folder and then navigate into the project root folder in the command prompt or terminal and enter the command: 
+
+php artisan serve
 
 Enter the URL provided into a browser and the homepage of the web application should display
