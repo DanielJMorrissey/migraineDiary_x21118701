@@ -37,7 +37,9 @@ This web application provides an online resource for a migraine sufferer to prov
 - Click New and add C:\php
 - Click the OK button on all application windows
 - Open the command prompt and type 'php -v'
-- The version should displayed
+- The version should be displayed
+
+[As an alternative, you can follow the instructions in this YouTube video](https://www.youtube.com/watch?v=FcU6CaIjBqo)
 
 **Linux**
 
@@ -59,7 +61,7 @@ This web application provides an online resource for a migraine sufferer to prov
 - Go to the [SQLite download page](https://www.sqlite.org/download.html)
 - In the Precompiled Binaries for Windows Section, download the 'sqlite-tools-win32-x86-.... .zip' file (the .... would be a series of numbers)
 - In the C:\ root, create a folder called sqlite
-- Extract the content of the zip file into the sqlite folder
+- Extract the content of the zip file into the sqlite folder. sqldiff.exe, sqlite3.exe and sqlite3_analyzer.exe should now be in C:\sqlite folder
 - Search for 'environment' in the windows search and click on **Edit the system environment variables**
 - Select the Advanced tab
 - Click the Environment Variables button
@@ -73,11 +75,41 @@ This web application provides an online resource for a migraine sufferer to prov
 
 [Instructions are found at this link](https://www.sqlitetutorial.net/download-install-sqlite/)
 
-However, adding to System variables is not shown in the link above but it allows sqlite shell to be accessed anywhere, otherwise navigate to the folder and enter sqlite3
+However, adding to System variables is not shown in the link above but it allows sqlite shell to be accessed anywhere in the terminal or command prompt, otherwise navigate to the folder in the command prompt and enter sqlite3
+
+[Alternatively, you can follow the steps in this video, please note that from the 2 minutes and 25 seconds point in the video is extra and is not necessary to implement](https://www.youtube.com/watch?v=L3FwRRx6bqo)
 
 ## How to install composer
 
-To install composer follow the instructions on this [link](https://getcomposer.org/doc/00-intro.md)
+To install composer you can follow the instructions on this [link](https://getcomposer.org/doc/00-intro.md)
+
+Alternatively, you can follow the instructions below
+
+**Windows**
+
+[Instructions from Geeks for Geeks](https://www.geeksforgeeks.org/how-to-install-php-composer-on-windows/)
+
+- Navigate to the [composer web page](https://getcomposer.org/)
+- Click on the Download button
+- Scroll down to 'Installation - Windows' and click on 'Composer-Setup.exe' to download the set up file
+- Open Composer-Setup.exe to start the installation
+- Click on 'Install for all users'
+- Click on 'next' for each stop, and then install **For settings check make sure the location for php.exe is correct. Should be found automatically but it should be in the php folder created when installing PHP**
+- Wait for the installation to complete then click 'next' and then 'finish'
+- Open Command prompt and type composer and press enter. 
+- A lot of text should appear with Composer appearing in bigger text at the start
+
+**Linux**
+
+[Instructions from Geeks for Geeks](https://www.geeksforgeeks.org/how-to-install-and-use-php-composer-on-linux/)
+
+- Open the terminal
+- Enter the following command: curl -Ss https://getcomposer.org/installer | php
+- The step above may take a few minutes
+- Next enter the following command: sudo mv composer.phar /usr/local/bin/composer
+- Next enter the following command: chmod +x /usr/local/bin/composer
+- type composer and press enter
+- A lot of text should appear with Composer appearing in bigger text at the start
 
 ## How to install Laravel
 
@@ -89,7 +121,7 @@ Instructions below show how to create a Laravel project
 - A laravel project should be created
 - cd into project
 - Enter the command: php artisan serve
-- A URL should be provided, copy and paste into the browser
+- A URL (something like: http://127.0.0.1:8000) should be provided, copy and paste into the browser
 - A laravel splash page should be displayed
 - Visit the [Laravel Documentation](https://laravel.com/docs/9.x) for other configurations
 
