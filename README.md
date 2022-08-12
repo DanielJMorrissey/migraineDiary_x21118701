@@ -81,6 +81,8 @@ However, adding to System variables is not shown in the link above but it allows
 
 ## How to install composer
 
+**PHP must be installed before installing Composer**
+
 To install composer you can follow the instructions on this [link](https://getcomposer.org/doc/00-intro.md)
 
 Alternatively, you can follow the instructions below
@@ -111,6 +113,28 @@ Alternatively, you can follow the instructions below
 - type composer and press enter
 - A lot of text should appear with Composer appearing in bigger text at the start
 
+**Mac**
+
+[Instructions from Geeks for Geeks](https://www.geeksforgeeks.org/how-to-install-php-composer-on-macos/)
+
+- Open the terminal
+- Enter the following commands in order (may have to do each individually):
+
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+
+php composer-setup.php
+
+php -r "unlink('composer-setup.php');"
+
+- Composer should be installed but can't be globally accessed. To check installation enter the command: php composer.phar
+- A lot of text should appear with Composer appearing in bigger text at the start
+- To access Composer globally, you'll need to put the composer.phar file into a folder on your 'PATH', which is done by entering this command: sudo mv composer.phar /usr/local/bin/composer
+- type composer and press enter
+- A lot of text should appear with Composer appearing in bigger text at the start
+
+
 ## How to install Laravel
 
 Instructions below show how to create a Laravel project
@@ -119,14 +143,14 @@ Instructions below show how to create a Laravel project
 - Enter the command to start a new project in the desired folder: composer create-project laravel/laravel name_of_project
 - Alternatively, you can create a project with the command: laravel new name_of_project
 - A laravel project should be created
-- cd into project
+- Navigate into project
 - Enter the command: php artisan serve
 - A URL (something like: http://127.0.0.1:8000) should be provided, copy and paste into the browser
 - A laravel splash page should be displayed
 - Visit the [Laravel Documentation](https://laravel.com/docs/9.x) for other configurations
 
-For this web application, clone the code or download the zip file by clicking the code button, found next to the about section into the desired folder and then navigate into the project root folder in the command prompt or terminal and enter the command: 
+For this web application, clone the code using Git Bash or download the zip file by clicking the code button, found next to the about section into the desired folder and then navigate into the project root folder in the command prompt or terminal and enter the command: 
 
 php artisan serve
 
-Enter the URL provided into a browser and the homepage of the web application should display
+Enter the URL (something like: http://127.0.0.1:8000) provided into a browser and the homepage of the web application should display as the repository has been set up to be fully operational upon download
