@@ -118,7 +118,7 @@ Alternatively, you can follow the instructions below
 [Instructions from Geeks for Geeks](https://www.geeksforgeeks.org/how-to-install-php-composer-on-macos/)
 
 - Open the terminal
-- Enter the following commands in order (may have to do each individually):
+- Enter the following commands (may have to do each individually):
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
