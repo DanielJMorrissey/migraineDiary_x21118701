@@ -96,7 +96,7 @@ Alternatively, you can follow the instructions below
 - Scroll down to 'Installation - Windows' and click on 'Composer-Setup.exe' to download the set up file
 - Open Composer-Setup.exe to start the installation
 - Click on 'Install for all users'
-- Click on 'next' for each step, and then click install. (**For settings check make sure the location for php.exe is correct. Should be found automatically but it should be in the php folder created when installing PHP**)
+- Click on 'next' for each step, and then click install. (**For settings check make sure the location for php.exe is correct. Should be found automatically but the php.exe file should be in the php folder created when installing PHP**)
 - Wait for the installation to complete then click 'next' and then 'finish'
 - Open Command prompt and type composer and press enter. 
 - A lot of text should appear with 'Composer' appearing in bigger text at the start
