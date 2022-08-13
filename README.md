@@ -4,8 +4,8 @@ This web application provides an online resource for a migraine sufferer to prov
 
 - General Information Homepage
 - Log In and Registration System
-- Migraine Diary (View diary entries in chronological order, most recent first, update and delete entries)
-- GP Tracker (View GP visit entries in chronological order, most recent first, update and delete entries)
+- Migraine Diary (View diary entries in chronological order (most recent first), create, update and delete entries)
+- GP Tracker (View GP visit entries in chronological order (most recent first), create, update and delete entries)
 - Analysis
 
 ## Dependencies
@@ -28,7 +28,7 @@ This web application provides an online resource for a migraine sufferer to prov
 - Download the **Thread Safe** zip file
 - Create a new php folder in the root of the C:\ drive and extract the contents of the zip file into the new php folder (can be stored anywhere but is easier to create paths from there)
 - In the php folder, create a new file called php.ini
-- Copy the contents of php.ini-development into the php.ini (several lines may need to be changed, usually by removing the ; to uncomment that setting. [**Follow step 3 of How to install PHP**](https://www.sitepoint.com/how-to-install-php-on-windows/))
+- Copy the contents of php.ini-development into the php.ini (several lines may need to be changed, usually by removing the ; to uncomment that setting. [**Follow step 3 of 'How to install PHP'**](https://www.sitepoint.com/how-to-install-php-on-windows/))
 - Search for 'environment' in the windows search and click on **Edit the system environment variables**
 - Select the Advanced tab
 - Click the Environment Variables button
@@ -53,7 +53,7 @@ This web application provides an online resource for a migraine sufferer to prov
 - Enter: php -v
 - The version should be displayed
 
-### How to Install SQLite
+## How to Install SQLite
 **Installation instructions is based on a windows operating system, SQLite should be pre-installed in macOS and Linux**
 
 **Windows**
@@ -96,10 +96,10 @@ Alternatively, you can follow the instructions below
 - Scroll down to 'Installation - Windows' and click on 'Composer-Setup.exe' to download the set up file
 - Open Composer-Setup.exe to start the installation
 - Click on 'Install for all users'
-- Click on 'next' for each stop, and then install **For settings check make sure the location for php.exe is correct. Should be found automatically but it should be in the php folder created when installing PHP**
+- Click on 'next' for each step, and then click install **For settings check make sure the location for php.exe is correct. Should be found automatically but it should be in the php folder created when installing PHP**
 - Wait for the installation to complete then click 'next' and then 'finish'
 - Open Command prompt and type composer and press enter. 
-- A lot of text should appear with Composer appearing in bigger text at the start
+- A lot of text should appear with 'Composer' appearing in bigger text at the start
 
 **Linux**
 
@@ -111,7 +111,7 @@ Alternatively, you can follow the instructions below
 - Next enter the following command: sudo mv composer.phar /usr/local/bin/composer
 - Next enter the following command: chmod +x /usr/local/bin/composer
 - type composer and press enter
-- A lot of text should appear with Composer appearing in bigger text at the start
+- A lot of text should appear with 'Composer' appearing in bigger text at the start
 
 **Mac**
 
@@ -129,7 +129,7 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
 - Composer should be installed but can't be globally accessed. To check installation enter the command: php composer.phar
-- A lot of text should appear with Composer appearing in bigger text at the start
+- A lot of text should appear with 'Composer' appearing in bigger text at the start
 - To access Composer globally, you'll need to put the composer.phar file into a folder on your 'PATH', which is done by entering this command: sudo mv composer.phar /usr/local/bin/composer
 - type composer and press enter
 - A lot of text should appear with Composer appearing in bigger text at the start
@@ -142,14 +142,14 @@ Instructions below show how to create a Laravel project
 - Open the command prompt or terminal
 - Enter the command to start a new project in the desired folder: composer create-project laravel/laravel name_of_project
 - Alternatively, you can create a project with the command: laravel new name_of_project
-- A laravel project should be created
+- A laravel project should be created (You may have to wait a few minutes)
 - Navigate into project
 - Enter the command: php artisan serve
 - A URL (something like: http://127.0.0.1:8000) should be provided, copy and paste into the browser
 - A laravel splash page should be displayed
 - Visit the [Laravel Documentation](https://laravel.com/docs/9.x) for other configurations
 
-For this web application, clone the code using Git Bash or download the zip file by clicking the code button, found next to the about section into the desired folder and then navigate into the project root folder in the command prompt or terminal and enter the command: 
+For this web application, clone the code using Git Bash or download the zip file by clicking the code button, found next to the about section, into the desired folder and then extract the project. Then navigate into the project root folder in the command prompt or terminal and enter the command: 
 
 php artisan serve
 
