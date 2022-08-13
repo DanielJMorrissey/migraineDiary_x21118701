@@ -13,6 +13,9 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthorisationController extends Controller
 {
+    /*
+        Some code was aided by Laravel docs (available at: https://laravel.com/docs/9.x/authorization) and positronX.io. Available at: https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/
+    */
     # log in page
     public function loginPage()
     {

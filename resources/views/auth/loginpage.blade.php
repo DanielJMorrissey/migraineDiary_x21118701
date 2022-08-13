@@ -1,4 +1,8 @@
 @extends('layout')
+{{-- 
+    Some code was aided by Laravel docs (available at: https://laravel.com/docs/9.x/authorization) and positronX.io. Available at: https://www.positronx.io/laravel-custom-authentication-login-and-registration-tutorial/      
+--}}
+
 @section('title')
     <title>
         Migraine Diary - Log In
